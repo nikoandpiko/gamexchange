@@ -11,7 +11,7 @@ require 'net/https'
 http1 = Net::HTTP.new('api.igdb.com', 443)
 http1.use_ssl = true
 request1 = Net::HTTP::Post.new(URI('https://api.igdb.com/v4/games'), {'Client-ID' => '9nu16mxtee9islxz909mkmudl8minu', 'Authorization' => 'Bearer sgbs6fxnj0thm1op0dzog9n5if0ygx'})
-request1.body = 'fields artworks,cover,category,genres.name,name,rating, platforms; where platforms = 48  & rating > 70; limit 100;'
+request1.body = 'fields artworks,cover,category,genres.name,name,rating, platforms; where platforms = 48  & rating > 70; limit 3;'
 
 hash_as_string1 = http1.request(request1).body
 playstation_games_data_array = eval(hash_as_string1)
@@ -35,6 +35,8 @@ hash_as_string3 = http3.request(request3).body
 xbox_games_data_array = eval(hash_as_string3)
 
 
+
+
 puts "Cleaning up database"
 Game.destroy_all
 puts "All clean"
@@ -45,6 +47,15 @@ puts "Seeding playstation games"
     playstation_game = playstation_games_data_array.sample
     playstation_game_name = playstation_game[:name]
     playstation_game[:genres].nil? ? playstation_game_genre = "" : playstation_game_genre = playstation_game[:genres][0][:name]
+    playstation_game_cover_id = playstation_game[:cover]
+
+    http1 = Net::HTTP.new('api.igdb.com', 443)
+    http1.use_ssl = true
+    request1 = Net::HTTP::Post.new(URI('https://api.igdb.com/v4/covers'), {'Client-ID' => '9nu16mxtee9islxz909mkmudl8minu', 'Authorization' => 'Bearer sgbs6fxnj0thm1op0dzog9n5if0ygx'})
+    request1.body = 'fields image_id, url, height, width; limit 5;'
+
+    hash_as_string1 = http1.request(request1).body
+    playstation_games_data_array = eval(hash_as_string1)
 
     Game.create(
         title: playstation_game_name,
@@ -86,3 +97,5 @@ puts "Seeding xbox one games"
 )
 end
 puts "Seeded"
+
+

@@ -1,3 +1,4 @@
 class Game < ApplicationRecord
-    validates :title, uniqueness: true
+  has_many :offers
+  validates :title, uniqueness: true, presence: true
 end

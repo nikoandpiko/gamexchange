@@ -59,10 +59,6 @@ puts "Seeding playstation games"
     playstation_game_image = playstation_game_image_small.join("/")
 
 
-
-
-
-
     Game.create(
         title: playstation_game_name,
         platform: "Playstation 4",
@@ -70,6 +66,7 @@ puts "Seeding playstation games"
         image: playstation_game_image
 )
 end
+
 puts "Seeded"
 
 
@@ -117,3 +114,5 @@ puts "Seeding xbox one games"
 )
 end
 puts "Seeded"
+
+

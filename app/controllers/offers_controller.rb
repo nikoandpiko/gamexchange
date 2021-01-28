@@ -4,6 +4,8 @@ class OffersController < ApplicationController
     end
 
     def show
+        @offer = Offer.find(params[:id])
+        @offers_for_game = Offer.where(game_id: @offer.game.id)
     end
 
     def new

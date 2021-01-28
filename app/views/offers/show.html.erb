@@ -1,0 +1,57 @@
+<div class="banner-show">
+   <div class="container text-center">
+     <div class="row">
+       <div class="col-sm-12 col-md-12 col-lg-4 text-left">
+         <br>
+         <br>
+           <img src="<%=@offer.game.image%>" alt=""> 
+       </div>
+       <div class="col-sm-12 col-md-12 col-lg-8 text-left">
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+           <h4>  <%=@offer.game.genre%></h4>
+           <h1><%=@offer.game.title%></h1>
+       </div>
+     </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-3">
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-9 text-left">
+          <h5 class="h5-show">Available From:</h5>
+           <% @offers_for_game.each do |offer| %>    
+             <div class="card card-show">
+                 <img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" alt="">
+                <div class="review-user">
+                  <h3><%=@offer.user.email%></h3>
+                  <%# <h1><%=@offer.user.review%>
+                </div>
+              <div class="platforms">
+                <div class="platforms-button-">
+                  <% if offer.game.platform == "Playstation 4" %>
+                    <button disabled class ="active-p">ps4</button>
+                    <button disabled class = "disabled-s">switch</button>
+                    <button disabled class = "disabled-x">xbox</button>
+                  <% elsif offer.game.platform == "Nintendo Switch"  %>
+                    <button disabled class = "disabled-p">ps4</button>
+                    <button disabled class ="active-s">switch</button>
+                    <button disabled class = "disabled-x">xbox</button>
+                  <% else %>
+                    <button disabled class = "disabled-p">ps4</button>
+                    <button disabled class = "disabled-s">switch</button>
+                    <button disabled class ="active-x">xbox</button>
+                  <% end %>
+                    <div class="rent-now">
+                      <button class="btn btn-primary w-100">Rent</button>
+                    </div>
+                  </div>
+              </div>
+             </div>
+          <% end %>
+      </div>
+  </div>
+</div>
+ 

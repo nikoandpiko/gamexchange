@@ -1,0 +1,27 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://i.redd.it/vrno30rkp1w51.png);">
+  <div class="container-xl">
+    <h3><%= @user.username %>'s</h3>
+    <h1>DASHBOARD</h1>
+    <h3>★★★★☆</h3>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <button><%= link_to "Add Game", new_offer_path %></button>
+</div>
+
+<ul class="list-inline tabs-underlined">
+  <li>
+    <a href="#" class="tab-underlined active">MY GAMES</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">RENTED OUT</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">RENTING</a>
+  </li>
+</ul>
+
+<%= @offer.game.title %>
+<%= @offer.game.genre%>
+<%= @offer.game.platform %>

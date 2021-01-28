@@ -1,36 +1,45 @@
 class OffersController < ApplicationController
     def index
-      @offers = Offer.all
+        @offers = policy_scope(Offer)
     end
 
     def show
-      @offer = Offer.find(params[:id])
-      @offers_for_game = Offer.where(game_id: @offer.game.id)
+
+        @offer = Offer.find(params[:id])
+        authorize @offer
+        @offers_for_game = Offer.where(game_id: @offer.game.id)
+
     end
 
     def new
-      @offer = Offer.new
+        @offer = Offer.new
+        authorize @offer
     end
 
     def create
-      @game = Game.find(offer_params[:game_id])
-      @offer = Offer.new(
-          game: @game,
-          user: current_user
-      )
-      if @offer.save
-        redirect_to @current_user, notice: 'Offer was successfully created.'
-      else
-        render :new
-      end
+        @game = Game.find(offer_params[:game_id])
+        @offer = Offer.new(
+            game: @game,
+            user: current_user
+        )
+        authorize @offer
+        
+        if @offer.save
+          redirect_to offers_path, notice: 'Offer was successfully created.'
+        else
+          render :new
+        end
     end
 
     def update
     end
-
+  
     def destroy
-      @offer.destroy
-      redirect_to @current_user
+        @offer = Offer.find(params[:id])
+        authorize @offer
+        @offer.destroy
+
+        redirect_to offers_path
     end
 
     private

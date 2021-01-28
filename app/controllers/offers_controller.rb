@@ -1,15 +1,19 @@
 class OffersController < ApplicationController
     def index
-        @offers = Offer.all
+        @offers = policy_scope(Offer)
     end
 
     def show
+
         @offer = Offer.find(params[:id])
+        authorize @offer
         @offers_for_game = Offer.where(game_id: @offer.game.id)
+
     end
 
     def new
         @offer = Offer.new
+        authorize @offer
     end
 
     def create
@@ -18,6 +22,7 @@ class OffersController < ApplicationController
             game: @game,
             user: current_user
         )
+        authorize @offer
         
         if @offer.save
           redirect_to offers_path, notice: 'Offer was successfully created.'
@@ -29,7 +34,12 @@ class OffersController < ApplicationController
     def update
     end
   
-    def delete
+    def destroy
+        @offer = Offer.find(params[:id])
+        authorize @offer
+        @offer.destroy
+
+        redirect_to offers_path
     end
 
     private     

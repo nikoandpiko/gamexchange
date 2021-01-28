@@ -1,19 +1,19 @@
 class OffersController < ApplicationController
-    def index
-        @offers = policy_scope(Offer)
-    end
+  skip_before_action :authenticate_user!, only: :index
+  def index
+    @offers = policy_scope(Offer)
+  end
 
-    def show
-        @offer = Offer.find(params[:id])
-        authorize @offer
-        @offers_for_game = Offer.where(game_id: @offer.game.id)
-    end
+  def show
+    @offer = Offer.find(params[:id])
+    authorize @offer
+    @offers_for_game = Offer.where(game_id: @offer.game.id)
+  end
 
-    def new
-        @offer = Offer.new
-        authorize @offer
-
-    end
+  def new
+      @offer = Offer.new
+      authorize @offer
+  end
 
     def create
         @game = Game.find(offer_params[:game_id])
@@ -30,20 +30,20 @@ class OffersController < ApplicationController
         end
     end
 
-    def update
-    end
-  
-    def destroy
-        @offer = Offer.find(params[:id])
-        authorize @offer
-        @offer.destroy
+  def update
+  end
 
-        redirect_to offers_path
-    end
+  def destroy
+    @offer = Offer.find(params[:id])
+    authorize @offer
+    @offer.destroy
 
-    private
+    redirect_to offers_path
+  end
 
-    def offer_params
-      params.require(:offer).permit(:game_id)
-    end
+  private
+
+  def offer_params
+    params.require(:offer).permit(:game_id)
+  end
 end

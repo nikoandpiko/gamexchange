@@ -1,9 +1,46 @@
-
-<% @offers.each do |offer| %>
-  <%= offer.game.title %>
-  <br>
-    <% offer.rentals.each do |rental| %>
-      <%= rental.status %>
+<div class="banner-show">
+  <div class="container text-center">
+    <div class="col-sm-12 col-md-12 col-lg-12 text-left">
+      <br>
+      <br>
+      <h1>Welcome to GameXchange</h1>
+      <h4>Exchange your favorite games with your friends.</h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-6 text-left">
+    <% @offers.each do |offer| %>
+      <div class="card card-show">
+        <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>">
+        <div class="review-user">
+          <h3><%= link_to offer.game.title, offer_path(offer) %></h3>
+          <p><%= offer.game.genre %></p>
+        </div>
+        <div class="platforms">
+          <div class="platforms-button-">
+            <% if offer.game.platform == "Playstation 4" %>
+              <button disabled class ="active-p">ps4</button>
+              <button disabled class = "disabled-s">switch</button>
+              <button disabled class = "disabled-x">xbox</button>
+            <% elsif offer.game.platform == "Nintendo Switch"  %>
+              <button disabled class = "disabled-p">ps4</button>
+              <button disabled class ="active-s">switch</button>
+              <button disabled class = "disabled-x">xbox</button>
+            <% else %>
+              <button disabled class = "disabled-p">ps4</button>
+              <button disabled class = "disabled-s">switch</button>
+              <button disabled class ="active-x">xbox</button>
+            <% end %>
+            <div class="rent-now">
+              <button class="btn btn-primary w-100">Rent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <% offer.rentals.each do |rental| %>
+        <%= rental.status %>
+      <% end %>
+      <br>
     <% end %>
-  <br>
-<% end %>

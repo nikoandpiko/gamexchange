@@ -4,7 +4,7 @@
        <div class="col-sm-12 col-md-12 col-lg-4 text-left">
          <br>
          <br>
-           <img src="<%=@offer.game.image%>" alt=""> 
+           <img src="<%=@offer.game.image%>" alt="">
        </div>
        <div class="col-sm-12 col-md-12 col-lg-8 text-left">
          <br>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-9 text-left">
           <h5 class="h5-show">Available From:</h5>
-           <% @offers_for_game.each do |offer| %>    
+           <% @offers_for_game.each do |offer| %>
              <div class="card card-show">
                  <img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" alt="">
                 <div class="review-user">
@@ -44,9 +44,9 @@
                     <button disabled class = "disabled-s">switch</button>
                     <button disabled class ="active-x">xbox</button>
                   <% end %>
-                    <div class="rent-now">
-                      <button class="btn btn-primary w-100">Rent</button>
-                    </div>
+                      <%= simple_form_for [@offer, Rental.new] do |f| %>
+                          <%= f.submit "Rent?", class: "btn btn-light w-25" %>
+                      <% end %>
                   </div>
               </div>
              </div>
@@ -54,4 +54,3 @@
       </div>
   </div>
 </div>
- 

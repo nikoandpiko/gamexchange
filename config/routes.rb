@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :offers, except: [ :edit ] do
-    resources :rentals, except: [ :edit, :delete ]
+    resources :rentals, except: [:show, :update, :edit, :delete ]
   end
+  resources :rentals, only: [:update]
 
   resources :reviews
   resources :users

@@ -24,20 +24,20 @@
 
 
   <div class="row">
-    <% @offers_for_user.each do |offer| %>
+    <% @rentals.each do |rental| %>
       <div class="col-lg-4">
       </div>
       <div class="col-lg-1">
       </div>
       <div class="col-lg-6">
         <div class="card-show-category">
-           <p><%= offer.user.email %></p>
+           <p><%= rental.offer.user.email %></p>
            <div class="platforms-button m-2">
-              <% if offer.game.platform == "Playstation 4" %>
+              <% if rental.offer.game.platform == "Playstation 4" %>
                 <button disabled class ="active-p">ps4</button>
                 <button disabled class = "disabled-s">switch</button>
                 <button disabled class = "disabled-x">xbox</button>
-              <% elsif offer.game.platform == "Nintendo Switch"  %>
+              <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
                 <button disabled class = "disabled-p">ps4</button>
                 <button disabled class ="active-s">switch</button>
                 <button disabled class = "disabled-x">xbox</button>
@@ -47,7 +47,14 @@
                   <button disabled class ="active-x">xbox</button>
                <% end %>
               <div class="rent-now my-2">
-                <button class="btn btn-primary w-100">Rent</button>
+                <% if rental.status == 'Accepted' %>
+                  <%= simple_form_for (rental) do |f| %>
+                      <%= f.submit "Return", class: "btn btn-light w-25" %>
+                      <%= f.input :status, input_html: { value: 'Returned' }, as: :hidden %>
+                  <% end %>
+                <% else %>
+                  <%= rental.status %>
+                <% end %>
               </div>
             </div>
         </div>

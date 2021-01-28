@@ -11,24 +11,24 @@ class OffersController < ApplicationController
   end
 
   def new
-    @offer = Offer.new
-    authorize @offer
+      @offer = Offer.new
+      authorize @offer
   end
 
-  def create
-    @game = Game.find(offer_params[:game_id])
-    @offer = Offer.new(
-      game: @game,
-      user: current_user
-    )
-    authorize @offer
-
-    if @offer.save
-      redirect_to offers_path, notice: 'Offer was successfully created.'
-    else
-      render :new
+    def create
+        @game = Game.find(offer_params[:game_id])
+        @offer = Offer.new(
+            game: @game,
+            user: current_user
+        )
+        authorize @offer
+        
+        if @offer.save
+          redirect_to user_path(current_user), notice: 'Offer was successfully created.'
+        else
+          render :new
+        end
     end
-  end
 
   def update
   end

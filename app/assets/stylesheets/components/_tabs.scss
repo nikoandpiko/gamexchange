@@ -1,22 +1,58 @@
-.tabs-underlined {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 32px;
+// .tabs-underlined {
+//   margin-top: 10px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   font-size: 32px;
+// }
+
+// .tabs-underlined .tab-underlined {
+//   color: black;
+//   padding: 8px;
+//   margin: 8px 16px;
+//   opacity: .4;
+//   cursor: pointer;
+//   text-decoration: none;
+//   border-bottom: 4px solid transparent;
+// }
+
+// .tabs-underlined .tab-underlined.active {
+//   opacity: 1;
+//   border-bottom: 3px solid #555555;
+// }
+
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
 
-.tabs-underlined .tab-underlined {
-  color: black;
-  padding: 8px;
-  margin: 8px 16px;
-  opacity: .4;
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
   cursor: pointer;
-  text-decoration: none;
-  border-bottom: 4px solid transparent;
+  padding: 14px 16px;
+  transition: 0.3s;
 }
 
-.tabs-underlined .tab-underlined.active {
-  opacity: 1;
-  border-bottom: 3px solid #555555;
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }

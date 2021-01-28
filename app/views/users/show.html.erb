@@ -22,6 +22,38 @@
   </li>
 </ul>
 
-<%= @offer.game.title %>
-<%= @offer.game.genre%>
-<%= @offer.game.platform %>
+
+  <div class="row">
+    <% @offers_for_user.each do |offer| %>
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-6">
+        <div class="card-show-category">
+           <p><%= offer.user.email %></p>
+           <div class="platforms-button m-2">
+              <% if offer.game.platform == "Playstation 4" %>
+                <button disabled class ="active-p">ps4</button>
+                <button disabled class = "disabled-s">switch</button>
+                <button disabled class = "disabled-x">xbox</button>
+              <% elsif offer.game.platform == "Nintendo Switch"  %>
+                <button disabled class = "disabled-p">ps4</button>
+                <button disabled class ="active-s">switch</button>
+                <button disabled class = "disabled-x">xbox</button>
+              <% else %>
+                  <button disabled class = "disabled-p">ps4</button>
+                  <button disabled class = "disabled-s">switch</button>
+                  <button disabled class ="active-x">xbox</button>
+               <% end %>
+              <div class="rent-now my-2">
+                <button class="btn btn-primary w-100">Rent</button>
+              </div>
+            </div>
+        </div>
+      </div>
+        <div class="col-lg-1">
+      </div>
+    <% end %>
+  </div>
+

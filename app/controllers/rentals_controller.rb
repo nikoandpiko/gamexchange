@@ -10,6 +10,7 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
+    authorize @rental
   end
 
   def create
@@ -18,6 +19,7 @@ class RentalsController < ApplicationController
       user: current_user,
       status: :status
     )
+    authorize @rental
     if @rental.save
       redirect_to offers_path(@rental.offer), notice: 'Rental was successfully created.'
     else

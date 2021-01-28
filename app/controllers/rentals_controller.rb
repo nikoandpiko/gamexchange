@@ -28,6 +28,7 @@ class RentalsController < ApplicationController
   end
 
   def update
+    authorize @rental
     @rental.update(rental_params)
     redirect_to offers_path(@rental.offer), notice: 'Rental status has been updated'
   end

@@ -1,0 +1,68 @@
+.card-show {
+    display: flex;
+    position: relative;
+    height: 150px;
+    margin-top: 24px;
+    margin-left: 30px;
+}
+
+.h5-show {
+    margin-left: 30px;
+}
+
+.card-show img {
+    height: 100px;
+    position: absolute;
+    top: 25px;
+    left: 15px;
+}
+
+.platforms {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+
+}
+
+.rent-now {
+    position: absolute;
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.review-user {
+    position: absolute;
+    top: 40px;
+    left: 134px;
+}
+
+.active-p {
+    background-color: blue;
+    color: white;
+    opacity: 80%;
+}
+
+.active-s {
+    background-color: red;
+    opacity: 80%;
+    color: white;
+}
+
+.active-x {
+    background-color: green;
+    opacity: 80%;
+    color: white;
+}
+
+.disabled-p {
+    opacity: 100%;
+}
+
+.disabled-s {
+    opacity: 100%;
+}
+
+.disabled-x {
+    opacity: 100%;
+}

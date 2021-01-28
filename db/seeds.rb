@@ -5,8 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
+puts "Cleaning statuses"
+Rental.destroy_all
+puts "ピカピカ"
+puts "Creating statuses"
+statuses_user = ['rent', 'return']
+statuses_owner = ['accept', 'decline']
+statuses_user.each do |v|
+  Rental.create(status: v)
+end
+puts "Finish 1st part"
 require 'net/https'
 http1 = Net::HTTP.new('api.igdb.com', 443)
 http1.use_ssl = true
@@ -47,6 +55,7 @@ Game.destroy_all
 puts "All clean"
 
 puts "Seeding playstation games"
+
 
 100.times do 
     playstation_game = playstation_games_data_array.sample

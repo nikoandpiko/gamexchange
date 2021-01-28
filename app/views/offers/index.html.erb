@@ -2,4 +2,8 @@
 <% @offers.each do |offer| %>
   <%= offer.game.title %>
   <br>
+    <% offer.rentals.each do |rental| %>
+      <%= rental.status %>
+    <% end %>
+  <br>
 <% end %>

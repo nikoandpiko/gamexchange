@@ -7,31 +7,27 @@
 </div>
 
 <div class="container mt-3">
-  <button><%= link_to "Add Game", new_offer_path %></button>
+  <button><%= link_to "Add New Offer", new_offer_path %></button>
 </div>
 
-<ul class="list-inline tabs-underlined">
-  <li>
-    <a href="#" class="tab-underlined active">MY GAMES</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">RENTED OUT</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">RENTING</a>
-  </li>
-</ul>
 
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Listed Games')">Listed Games</button>
+  <button class="tablinks" onclick="openCity(event, 'Rented Out')">Rented Out</button>
+  <button class="tablinks" onclick="openCity(event, 'My Rentals')">My Rentals</button>
+</div>
 
+<div id="Listed Games" class="tabcontent">
   <div class="row">
     <% @offers_for_user.each do |offer| %>
+     <%=  %>
       <div class="col-lg-4">
       </div>
       <div class="col-lg-1">
       </div>
       <div class="col-lg-6">
         <div class="card-show-category">
-           <p><%= offer.user.email %></p>
+           <p><%= offer.game.title %></p>
            <div class="platforms-button m-2">
               <% if offer.game.platform == "Playstation 4" %>
                 <button disabled class ="active-p">ps4</button>
@@ -46,9 +42,6 @@
                   <button disabled class = "disabled-s">switch</button>
                   <button disabled class ="active-x">xbox</button>
                <% end %>
-              <div class="rent-now my-2">
-                <button class="btn btn-primary w-100">Rent</button>
-              </div>
             </div>
         </div>
       </div>
@@ -56,4 +49,91 @@
       </div>
     <% end %>
   </div>
+</div>
 
+
+<div id="Rented Out" class="tabcontent">
+<p>Rented out!</p>
+<div class="row">
+    <% @offers_for_user.each do |offer| %>
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-6">
+        <div class="card-show-category">
+           <p><%= offer.game.title %></p>
+           <div class="platforms-button m-2">
+              <% if offer.game.platform == "Playstation 4" %>
+                <button disabled class ="active-p">ps4</button>
+                <button disabled class = "disabled-s">switch</button>
+                <button disabled class = "disabled-x">xbox</button>
+              <% elsif offer.game.platform == "Nintendo Switch"  %>
+                <button disabled class = "disabled-p">ps4</button>
+                <button disabled class ="active-s">switch</button>
+                <button disabled class = "disabled-x">xbox</button>
+              <% else %>
+                  <button disabled class = "disabled-p">ps4</button>
+                  <button disabled class = "disabled-s">switch</button>
+                  <button disabled class ="active-x">xbox</button>
+               <% end %>
+            </div>
+        </div>
+      </div>
+        <div class="col-lg-1">
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div id="My Rentals" class="tabcontent">
+<p>Rentals!</p>
+<div class="row">
+    <% @offers_for_user.each do |offer| %>
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-6">
+        <div class="card-show-category">
+           <p><%= offer.game.title %></p>
+           <div class="platforms-button m-2">
+              <% if offer.game.platform == "Playstation 4" %>
+                <button disabled class ="active-p">ps4</button>
+                <button disabled class = "disabled-s">switch</button>
+                <button disabled class = "disabled-x">xbox</button>
+              <% elsif offer.game.platform == "Nintendo Switch"  %>
+                <button disabled class = "disabled-p">ps4</button>
+                <button disabled class ="active-s">switch</button>
+                <button disabled class = "disabled-x">xbox</button>
+              <% else %>
+                  <button disabled class = "disabled-p">ps4</button>
+                  <button disabled class = "disabled-s">switch</button>
+                  <button disabled class ="active-x">xbox</button>
+               <% end %>
+            </div>
+        </div>
+      </div>
+        <div class="col-lg-1">
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>

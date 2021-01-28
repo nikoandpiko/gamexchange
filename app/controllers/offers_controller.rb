@@ -12,6 +12,7 @@ class OffersController < ApplicationController
     def new
         @offer = Offer.new
         authorize @offer
+
     end
 
     def create
@@ -23,7 +24,7 @@ class OffersController < ApplicationController
         authorize @offer
         
         if @offer.save
-          redirect_to offers_path, notice: 'Offer was successfully created.'
+          redirect_to user_path(current_user), notice: 'Offer was successfully created.'
         else
           render :new
         end

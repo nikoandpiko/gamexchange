@@ -5,16 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Cleaning statuses"
-Rental.destroy_all
-puts "ピカピカ"
-puts "Creating statuses"
-statuses_user = ['rent', 'return']
-statuses_owner = ['accept', 'decline']
-statuses_user.each do |v|
-  Rental.create(status: v)
-end
-puts "Finish 1st part"
+# puts "Cleaning statuses"
+# Rental.destroy_all
+# puts "ピカピカ"
+# puts "Creating statuses"
+# statuses.each do |v|
+#   Rental.create(status: v)
+# end
+# puts "Finish 1st part"
+
+
 require 'net/https'
 http1 = Net::HTTP.new('api.igdb.com', 443)
 http1.use_ssl = true
@@ -57,7 +57,7 @@ puts "All clean"
 puts "Seeding playstation games"
 
 
-100.times do 
+100.times do
     playstation_game = playstation_games_data_array.sample
     playstation_game_name = playstation_game[:name]
     playstation_game[:genres].nil? ? playstation_game_genre = "" : playstation_game_genre = playstation_game[:genres][0][:name]
@@ -82,13 +82,13 @@ puts "Seeded"
 
 puts "Seeding nintendo games"
 
-100.times do 
+100.times do
     switch_game = switch_games_data_array.sample
     switch_game_name = switch_game[:name]
     switch_game[:genres].nil? ? switch_game_genre = "" : switch_game_genre = switch_game[:genres][0][:name]
     switch_game_image_small = switch_game[:cover][:url]
 
-    switch_game_image_small = switch_game_image_small.split("/") 
+    switch_game_image_small = switch_game_image_small.split("/")
     switch_game_image_small[6] = "t_cover_big"
     switch_game_image = switch_game_image_small.join("/")
 
@@ -104,7 +104,7 @@ puts "Seeded"
 
 puts "Seeding xbox one games"
 
-50.times do 
+50.times do
     xbox_game = xbox_games_data_array.sample
     xbox_game_name = xbox_game[:name]
     xbox_game[:genres].nil? ? xbox_game_genre = "" : xbox_game_genre = xbox_game[:genres][0][:name]

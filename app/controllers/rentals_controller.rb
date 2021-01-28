@@ -16,8 +16,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(
       offer: @offer,
-      user: current_user,
-      status: :status
+      user: current_user
     )
     authorize @rental
     if @rental.save

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    @offers_for_user = Offer.where(user_id: @user.id)
+    @rentals = @user.rentals
   end
 
 

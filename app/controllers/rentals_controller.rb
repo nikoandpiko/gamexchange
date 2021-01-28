@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   before_action :find_rental, only: [:show, :update]
-  before_action :find_offer
+  before_action :find_offer, except: [:update]
 
   def index
     @rentals = Rental.all
@@ -20,7 +20,7 @@ class RentalsController < ApplicationController
     )
     authorize @rental
     if @rental.save
-      redirect_to offers_path(@rental.offer), notice: 'Rental was successfully created.'
+      redirect_to user_path(current_user), notice: 'Rental was successfully created.'
     else
       render :new, notice: 'Try again'
     end
@@ -29,7 +29,7 @@ class RentalsController < ApplicationController
   def update
     authorize @rental
     @rental.update(rental_params)
-    redirect_to offers_path(@rental.offer), notice: 'Rental status has been updated'
+    redirect_to user_path(current_user), notice: 'Rental status has been updated'
   end
 
   private
@@ -43,6 +43,6 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:status, :offer, :user)
+    params.require(:rental).permit(:status)
   end
 end

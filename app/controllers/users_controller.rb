@@ -7,8 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    @offer = Offer.find(params[:id])
-    @offers_for_game = Offer.where(game_id: @offer.game.id)
+    @offers_for_user = Offer.where(user_id: @user.id)
   end
 
 end

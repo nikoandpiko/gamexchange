@@ -26,6 +26,8 @@
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+  display: flex;
+  justify-content: space-around;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -55,4 +57,8 @@
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+}
+
+.tablinks {
+  font-size: 20px;
 }

@@ -38,10 +38,15 @@
 
 .card-index {
   border-radius: 8px;
+  position: relative;
+  height: 525px;
 }
 
 .button-index {
   border-radius: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0px;
 }
 
 .button-index a {

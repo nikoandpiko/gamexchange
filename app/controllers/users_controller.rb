@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     @rentals = @user.rentals
+    @offers_for_user = @user.offers
   end
 
 

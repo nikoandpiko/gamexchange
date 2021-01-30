@@ -19,20 +19,20 @@
 
 <div id="Listed Games" class="tabcontent">
   <div class="row">
-    <% @rentals.each do |rental| %>
+    <% @offers_for_user.each do |offer| %>
       <div class="col-lg-4">
       </div>
       <div class="col-lg-1">
       </div>
       <div class="col-lg-6">
         <div class="card-show-category">
-           <p><%= rental.offer.user.email %></p>
+           <p><%= offer.game.title %></p>
            <div class="platforms-button m-2">
-              <% if rental.offer.game.platform == "Playstation 4" %>
+              <% if offer.game.platform == "Playstation 4" %>
                 <button disabled class ="active-p">ps4</button>
                 <button disabled class = "disabled-s">switch</button>
                 <button disabled class = "disabled-x">xbox</button>
-              <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
+              <% elsif offer.game.platform == "Nintendo Switch"  %>
                 <button disabled class = "disabled-p">ps4</button>
                 <button disabled class ="active-s">switch</button>
                 <button disabled class = "disabled-x">xbox</button>
@@ -41,16 +41,6 @@
                   <button disabled class = "disabled-s">switch</button>
                   <button disabled class ="active-x">xbox</button>
                <% end %>
-              <div class="rent-now my-2">
-                <% if rental.status == 'Accepted' %>
-                  <%= simple_form_for (rental) do |f| %>
-                      <%= f.submit "Return", class: "btn btn-light w-25" %>
-                      <%= f.input :status, input_html: { value: 'Returned' }, as: :hidden %>
-                  <% end %>
-                <% else %>
-                  <%= rental.status %>
-                <% end %>
-              </div>
             </div>
         </div>
       </div>
@@ -64,33 +54,46 @@
 <div id="Rented Out" class="tabcontent">
 <p>Rented out!</p>
 <div class="row">
-    <% @rentals.each do |rental| %>
-      <div class="col-lg-4">
-      </div>
-      <div class="col-lg-1">
-      </div>
-      <div class="col-lg-6">
-        <div class="card-show-category">
-           <p><%= rental.offer.game.title %></p>
-           <div class="platforms-button m-2">
-              <% if rental.offer.game.platform == "Playstation 4" %>
-                <button disabled class ="active-p">ps4</button>
-                <button disabled class = "disabled-s">switch</button>
-                <button disabled class = "disabled-x">xbox</button>
-              <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
-                <button disabled class = "disabled-p">ps4</button>
-                <button disabled class ="active-s">switch</button>
-                <button disabled class = "disabled-x">xbox</button>
-              <% else %>
-                  <button disabled class = "disabled-p">ps4</button>
-                  <button disabled class = "disabled-s">switch</button>
-                  <button disabled class ="active-x">xbox</button>
-               <% end %>
-            </div>
+    <% @user.rentals_as_owner.each do |rental| %>
+        <p><%= rental.user.username %></p>
+        <div class="col-lg-4">
         </div>
-      </div>
         <div class="col-lg-1">
-      </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card-show-category">
+             <p><%= rental.offer.game.title %></p>
+             <div class="platforms-button m-2">
+                <% if rental.offer.game.platform == "Playstation 4" %>
+                  <button disabled class ="active-p">ps4</button>
+                  <button disabled class = "disabled-s">switch</button>
+                  <button disabled class = "disabled-x">xbox</button>
+                <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
+                  <button disabled class = "disabled-p">ps4</button>
+                  <button disabled class ="active-s">switch</button>
+                  <button disabled class = "disabled-x">xbox</button>
+                <% else %>
+                    <button disabled class = "disabled-p">ps4</button>
+                    <button disabled class = "disabled-s">switch</button>
+                    <button disabled class ="active-x">xbox</button>
+                 <% end %>
+               <div class="rent-now my-2">
+                 <% if rental.status == 'Accepted' %>
+                   <%= simple_form_for (rental) do |f| %>
+                       <%= f.submit "Return", class: "btn btn-light w-25" %>
+                       <%= f.input :status, input_html: { value: 'Returned' }, as: :hidden %>
+                    <% end %>
+                  <% else %>
+                    <% if rental.status == 'Returned' %>
+                     <%= rental.status %>
+                    <% end %>
+                 <% end %>
+               </div>
+              </div>
+          </div>
+        </div>
+          <div class="col-lg-1">
+        </div>
     <% end %>
   </div>
 </div>
@@ -100,32 +103,45 @@
 <p>Rentals!</p>
 <div class="row">
     <% @rentals.each do |rental| %>
-      <div class="col-lg-4">
-      </div>
-      <div class="col-lg-1">
-      </div>
-      <div class="col-lg-6">
-        <div class="card-show-category">
-           <p><%= rental.offer.game.title %></p>
-           <div class="platforms-button m-2">
-              <% if rental.offer.game.platform == "Playstation 4" %>
-                <button disabled class ="active-p">ps4</button>
-                <button disabled class = "disabled-s">switch</button>
-                <button disabled class = "disabled-x">xbox</button>
-              <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
-                <button disabled class = "disabled-p">ps4</button>
-                <button disabled class ="active-s">switch</button>
-                <button disabled class = "disabled-x">xbox</button>
-              <% else %>
-                  <button disabled class = "disabled-p">ps4</button>
-                  <button disabled class = "disabled-s">switch</button>
-                  <button disabled class ="active-x">xbox</button>
-               <% end %>
-            </div>
+      <% if rental.offer.user != current_user %>
+        <div class="col-lg-4">
         </div>
-      </div>
         <div class="col-lg-1">
-      </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card-show-category">
+             <p><%= rental.offer.game.title %></p>
+             <p><%= rental.offer.user.username %></p>
+             <div class="platforms-button m-2">
+                <% if rental.offer.game.platform == "Playstation 4" %>
+                  <button disabled class ="active-p">ps4</button>
+                  <button disabled class = "disabled-s">switch</button>
+                  <button disabled class = "disabled-x">xbox</button>
+                <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
+                  <button disabled class = "disabled-p">ps4</button>
+                  <button disabled class ="active-s">switch</button>
+                  <button disabled class = "disabled-x">xbox</button>
+                <% else %>
+                    <button disabled class = "disabled-p">ps4</button>
+                    <button disabled class = "disabled-s">switch</button>
+                    <button disabled class ="active-x">xbox</button>
+                 <% end %>
+                 <div class="rent-now my-2">
+                   <% if rental.status == 'Pending' %>
+                     <%= simple_form_for (rental) do |f| %>
+                         <%= f.submit "Return", class: "btn btn-light w-25" %>
+                         <%= f.input :status, input_html: { value: 'Returned' }, as: :hidden %>
+                     <% end %>
+                   <% else %>
+                     <%= rental.status %>
+                   <% end %>
+                 </div>
+              </div>
+          </div>
+        </div>
+          <div class="col-lg-1">
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

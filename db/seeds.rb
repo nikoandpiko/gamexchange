@@ -164,8 +164,7 @@ password: "123456"
 
 50.times do
     Offer.create(
-    user_id: rand(1..5),
+    user_id: rand(5..10),
     game_id: rand(128..228)
 )
-    
 end

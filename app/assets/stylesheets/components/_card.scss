@@ -36,6 +36,22 @@
     object-fit: cover;
 }
 
+.card-index {
+  border-radius: 8px;
+}
+
+.button-index {
+  border-radius: 0px;
+}
+
+.button-index a {
+  color: white;
+}
+
+.button-index a:hover {
+  text-decoration: none;
+}
+
 .platforms {
     position: absolute;
     top: 30px;

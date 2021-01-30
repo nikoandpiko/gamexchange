@@ -1,23 +1,30 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://i.redd.it/vrno30rkp1w51.png);">
   <div class="container-xl">
-    <h3><%= @user.username %>'s</h3>
-    <h1>DASHBOARD</h1>
-    <h3>★★★★☆</h3>
+    <div class="d-flex">
+      <%= image_tag "2b_default_avatar", class: "avatar-large" %>
+        <div class="ml-2">
+          <h3><%= @user.username %>'s</h3>
+          <h1>DASHBOARD</h1>
+          <h3>★★★★☆</h3>
+            <div class="container mt-3">
+              <div class="row justify-content-left">
+                <div class="btn-primary new-offer-button">
+                  <%= link_to "Add New Offer", new_offer_path, :class => "btn", style: "color:white" %>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
   </div>
 </div>
 
-<div class="container mt-3">
-  <button><%= link_to "Add New Offer", new_offer_path %></button>
-</div>
-
-
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Listed Games')">Listed Games</button>
+<div class="tab mt-3">
+  <button class="tablinks" onclick="openCity(event, 'Listed Games')">My Listed Games</button>
   <button class="tablinks" onclick="openCity(event, 'Rented Out')">Rented Out</button>
   <button class="tablinks" onclick="openCity(event, 'My Rentals')">My Rentals</button>
 </div>
 
-<div id="Listed Games" class="tabcontent">
+<div id="My Listed Games" class="flex-grow-1tabcontent">
   <div class="row">
     <% @rentals.each do |rental| %>
       <div class="col-lg-4">
@@ -62,7 +69,6 @@
 
 
 <div id="Rented Out" class="tabcontent">
-<p>Rented out!</p>
 <div class="row">
     <% @rentals.each do |rental| %>
       <div class="col-lg-4">
@@ -97,7 +103,6 @@
 </div>
 
 <div id="My Rentals" class="tabcontent">
-<p>Rentals!</p>
 <div class="row">
     <% @rentals.each do |rental| %>
       <div class="col-lg-4">

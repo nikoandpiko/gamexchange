@@ -129,7 +129,7 @@ end
 puts "Seeded"
 
 
-puts "Creating users and offers"
+puts "Creating users"
 
 User.create(
 username: "person1",

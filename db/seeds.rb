@@ -51,6 +51,10 @@ xbox_games_data_array = eval(hash_as_string3)
 
 
 puts "Cleaning up database"
+
+Rental.destroy_all
+Offer.destroy_all
+User.destroy_all
 Game.destroy_all
 puts "All clean"
 
@@ -125,3 +129,34 @@ end
 puts "Seeded"
 
 
+puts "Creating users"
+
+User.create(
+username: "person1",
+email: "1@1.com",
+password: "123456"
+)
+
+User.create(
+username: "person2",
+email: "2@2.com",
+password: "123456"
+)
+
+User.create(
+username: "person3",
+email: "3@3.com",
+password: "123456"
+)
+
+User.create(
+username: "person4",
+email: "4@4.com",
+password: "123456"
+)
+
+User.create(
+username: "person5",
+email: "5@5.com",
+password: "123456"
+)

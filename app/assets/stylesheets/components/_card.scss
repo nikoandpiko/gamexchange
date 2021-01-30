@@ -17,6 +17,22 @@
     left: 15px;
 }
 
+.card-index {
+  border-radius: 8px;
+}
+
+.button-index {
+  border-radius: 0px;
+}
+
+.button-index a {
+  color: white;
+}
+
+.button-index a:hover {
+  text-decoration: none;
+}
+
 .platforms {
     position: absolute;
     top: 40px;

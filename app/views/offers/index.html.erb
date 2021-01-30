@@ -8,7 +8,30 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="container">
+  <div class="card-deck">
+    <% @offers.each do |offer| %>
+      <div class="col-lg-3">
+        <div class="card card-index p-0 my-3">
+          <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>">
+          <div class="pt-0 px-0">
+            <div class="d-flex justify-content-around">
+              <p class="flex-grow-1 p-2 progress-bar bg-blue">PS4</p>
+              <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%">NSW</p>
+              <p class="flex-grow-1 p-2 progress-bar bg-info width: 30%">XBO</p>
+            </div>
+            <div class="card-body pt-0">
+              <h5 class="card-title"><%= offer.game.title %></h5>
+              <p class="card-text text-secondary"><%= offer.game.genre %></p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success button-text button-index btn-lg btn-block"><%= link_to "CHECK OUT", offer_path(offer) %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!-- <div class="row">
   <div class="col-sm-12 col-md-6 col-lg-6 text-left">
     <% @offers.each do |offer| %>
       <div class="card card-show">
@@ -43,4 +66,4 @@
         <%= rental.status %>
       <% end %>
       <br>
-    <% end %>
+    <% end %> -->

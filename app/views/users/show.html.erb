@@ -20,12 +20,12 @@
 
 
 <div class="tab mt-3">
-  <button class="tablinks" onclick="openCity(event, 'Listed Games')">My Listed Games</button>
+  <button class="tablinks" onclick="openCity(event, 'My Listed Games')">My Listed Games</button>
   <button class="tablinks" onclick="openCity(event, 'Rented Out')">Rented Out</button>
   <button class="tablinks" onclick="openCity(event, 'My Rentals')">My Rentals</button>
 </div>
 
-<div id="My Listed Games" class="flex-grow-1tabcontent">
+<div id="My Listed Games" class="flex-grow-1 tabcontent">
   <div class="row">
     <% @offers_for_user.each do |offer| %>
       <div class="col-lg-4">

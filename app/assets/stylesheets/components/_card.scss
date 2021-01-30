@@ -1,25 +1,44 @@
+
+.container-show {
+    position: relative;
+}
+
+
 .card-show {
     display: flex;
     position: relative;
-    height: 150px;
-    margin-top: 24px;
-    margin-left: 30px;
+    height: 140px;
+    width: 900px;
+    margin-bottom: 30px;
+}
+
+.show-row {
+    position: absolute;
+    top: 300px;
+    left: 140px;
+
+}
+
+.card-show h3 {
+    color: black;
 }
 
 .h5-show {
     margin-left: 30px;
+    margin-bottom: 20px;
 }
 
 .card-show img {
     height: 100px;
     position: absolute;
-    top: 25px;
+    top: 20px;
     left: 15px;
+    object-fit: cover;
 }
 
 .platforms {
     position: absolute;
-    top: 40px;
+    top: 30px;
     right: 40px;
 
 }
@@ -34,35 +53,91 @@
 .review-user {
     position: absolute;
     top: 40px;
-    left: 134px;
+    left: 150px;
+}
+
+.stars {
+    position: absolute;
+    left: 20px;
+   
+     
+
 }
 
 .active-p {
     background-color: blue;
     color: white;
     opacity: 80%;
+    border: none;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float:left;
 }
 
 .active-s {
     background-color: red;
     opacity: 80%;
     color: white;
+    border: none;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .active-x {
     background-color: green;
     opacity: 80%;
     color: white;
+    border: none;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: right;
 }
 
 .disabled-p {
     opacity: 100%;
+    border: none;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
 }
 
 .disabled-s {
     opacity: 100%;
+    border: none;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .disabled-x {
     opacity: 100%;
+    border: none;
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: right;
+}
+
+
+.button-show {
+    background-color: #00d5d5;
+    color: white;
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.button-show:hover {
+    opacity: 60%;
+}
+
+.platforms-img {
+    position: absolute;
+
 }

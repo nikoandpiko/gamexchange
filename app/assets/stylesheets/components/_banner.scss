@@ -23,12 +23,19 @@
 
 .banner-show {
     background-size: cover;
-    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.4));
-    padding: 100px;
-    height: 400px;
+    background-position: center;
+    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.6)), url(https://i.redd.it/vrno30rkp1w51.png);
+    padding: 50px;
+    height: 300px;
     margin-bottom: 30px;
+    color: white;
  }
+
+.h5-show {
+  color: black;
+} 
 
 .new-offer-button {
   border-radius: 8px !important;
 }
+

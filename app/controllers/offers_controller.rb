@@ -22,9 +22,9 @@ class OffersController < ApplicationController
             user: current_user
         )
         authorize @offer
-        
+
         if @offer.save
-          redirect_to user_path(current_user), notice: 'Offer was successfully created.'
+          redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
         else
           render :new
         end

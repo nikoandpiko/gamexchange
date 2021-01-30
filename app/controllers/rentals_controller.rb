@@ -20,7 +20,7 @@ class RentalsController < ApplicationController
     )
     authorize @rental
     if @rental.save
-      redirect_to user_path(current_user), notice: 'Rental was successfully created.'
+      redirect_to offer_path(@offer), notice: 'Rental was successfully created.'
     else
       render :new, notice: 'Try again'
     end

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :rentals
   has_many :offers
+  has_many :rentals
+  has_many :rentals_as_owner, through: :offers, source: :rentals
   has_many :given_reviews, source: :reviews, foreign_key: :reviewer_id
   has_many :received_reviews, source: :reviews, foreign_key: :user_id
 

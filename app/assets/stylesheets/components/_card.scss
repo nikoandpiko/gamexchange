@@ -39,7 +39,7 @@
 .card-index {
   border-radius: 8px;
   position: relative;
-  height: 525px;
+  height: 500px;
 }
 
 .button-index {
@@ -162,3 +162,28 @@
     position: absolute;
 
 }
+
+.card-index-image {
+    height: 250px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1200px) {
+    .card-index {
+        height: 550px;
+    }
+    .card-index-image {
+        height: 300px;
+
+    }
+  }
+
+  @media only screen and (max-width: 990px) {
+    .card-index {
+        height: 650px;
+    }
+    .card-index-image {
+        height: 400px;
+
+    }
+  }

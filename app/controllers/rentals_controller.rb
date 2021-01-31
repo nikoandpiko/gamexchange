@@ -20,7 +20,7 @@ class RentalsController < ApplicationController
     )
     authorize @rental
     if @rental.save
-      redirect_to offer_path(@offer), notice: 'Your rental request has been sent!'
+      redirect_to offer_path(@offer), notice: "Game added to 'My Rentals'!"
     else
       render :new, notice: 'Try again'
     end
@@ -29,7 +29,7 @@ class RentalsController < ApplicationController
   def update
     authorize @rental
     @rental.update(rental_params)
-    redirect_to user_path(current_user), notice: 'Rental status has been updated'
+    redirect_to user_path(current_user), notice: "You have successfully returned the game!"
   end
 
   private

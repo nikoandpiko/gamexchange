@@ -1,27 +1,3 @@
-// .tabs-underlined {
-//   margin-top: 10px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-around;
-//   font-size: 32px;
-// }
-
-// .tabs-underlined .tab-underlined {
-//   color: black;
-//   padding: 8px;
-//   margin: 8px 16px;
-//   opacity: .4;
-//   cursor: pointer;
-//   text-decoration: none;
-//   border-bottom: 4px solid transparent;
-// }
-
-// .tabs-underlined .tab-underlined.active {
-//   opacity: 1;
-//   border-bottom: 3px solid #555555;
-// }
-
-
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
@@ -61,4 +37,15 @@
 
 .tablinks {
   font-size: 20px;
+  width: 100%;
+}
+
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }

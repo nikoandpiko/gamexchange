@@ -63,6 +63,10 @@
     object-fit: cover;
 }
 
+.card-body-show {
+    color: black;
+}
+
 
 
 @media only screen and (max-width: 1200px) {
@@ -73,6 +77,7 @@
         height: 300px;
 
     }
+
     .card-show {
         border-radius: 8px;
         position: relative;
@@ -85,10 +90,17 @@
     .card-index {
         height: 650px;
     }
+
     .card-index-image {
         height: 400px;
 
     }
+
+    .banner-text-show h4 {
+        color: white;
+        margin-top: 10px;
+    }
+
     .card-show {
         border-radius: 8px;
         position: relative;
@@ -107,6 +119,7 @@
     .banner-text-show h1 {
         color: black
     }
+
     .card-show {
         border-radius: 8px;
         position: relative;

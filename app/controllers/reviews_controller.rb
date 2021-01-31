@@ -8,9 +8,9 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.user_id = current_user.id
-    @review.reviewer_id = current_user.id
     @user = User.find(params[:user_id])
+    @review.user_id = (params[:user_id])
+    @review.reviewer_id = current_user.username
     authorize @review
 
     if @review.save
@@ -28,6 +28,7 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:rating, :content, :reviewer_id)
+    # params.require(:review).permit(:rating, :content, :reviewer_id, :user_id)
   end
 
 end

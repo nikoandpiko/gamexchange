@@ -11,10 +11,6 @@ class UsersController < ApplicationController
     @offers_for_user = @user.offers
   end
 
-
-
-
-
   private
 
     def offer_params

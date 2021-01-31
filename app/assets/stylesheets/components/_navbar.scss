@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background-color: transparent;
+  transition: 0.5s background-color ease;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +10,23 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-lewagon .navbar-brand:hover {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-timing-function: ease;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.navbar-lewagon-white {
+  background-color: white;
 }

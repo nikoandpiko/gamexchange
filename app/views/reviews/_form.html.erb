@@ -1,0 +1,6 @@
+<%= simple_form_for [ @user, @review ] do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :content %>
+  <%# <%= f.hidden_field :user.id, @user.id %>
+  <%= f.button :submit %>
+<% end %>

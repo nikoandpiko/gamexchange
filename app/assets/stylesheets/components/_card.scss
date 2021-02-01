@@ -12,6 +12,17 @@
   width: 260px;
 }
 
+.card-row-show {
+    position: relative;
+}
+
+.card-row-show h4 {
+    color: black;
+    position: absolute;
+    top: -60px;
+    left: 360px;
+}
+
 .banner-text-show h4 {
     color: white;
     margin-top: 100px;
@@ -107,6 +118,13 @@
         height: 400px;
         width: 230px;
     }
+
+    .card-row-show h4 {
+        color: black;
+        position: absolute;
+        top: 60px;
+        left: 60px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -126,5 +144,13 @@
         height: 400px;
         width: 230px;
   }
+
+  .card-row-show h4 {
+    color: black;
+    position: absolute;
+    top: -60px;
+    left: 360px;
+    visibility: hidden;
+ }
 }
 

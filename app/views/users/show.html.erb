@@ -38,27 +38,33 @@
   <button class="tablinks" onclick="profileTabs(event, 'myrentals')">My Rentals</button>
 </div>
 
+<%# Do the <button disabled class = "active-p"> etc need to remain or can it be replaced with <p> index card code> %>
 <div id="mylistedgames" class="tabcontent">
   <div class="container">
     <div class="card-deck">
       <% @offers_for_user.each do |offer| %>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
           <div class="card card-offer-profile p-0 my-3">
-            <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>">
+            <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">
             <div class="pt-0 px-0">
-              <div class="d-flex justify-content-around">
                 <% if offer.game.platform == "Playstation 4" %>
-                  <button disabled class = "active-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
+                  <div class="d-flex justify-content-around">
+                    <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
+                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
+                  </div>
                 <% elsif offer.game.platform == "Nintendo Switch"  %>
-                  <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "active-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
+                  <div class="d-flex justify-content-around">
+                    <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                    <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
+                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
+                  </div>
                 <% else offer.game.platform == "XBox One" %>
-                  <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "active-x"><i class="fab fa-xbox"></i></button>
+                  <div class="d-flex justify-content-around">
+                    <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                    <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
+                  </div>
                 <% end %>
               </div>
               <div class="card-body pt-0">
@@ -84,17 +90,17 @@
             <div class="pt-0 px-0">
               <div class="d-flex justify-content-around">
                 <% if rental.offer.game.platform == "Playstation 4" %>
-                  <button disabled class = "active-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
+                  <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
-                  <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "active-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
+                 <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 <% else rental.offer.game.platform == "XBox One" %>
-                  <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "active-x"><i class="fab fa-xbox"></i></button>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
                 <% end %>
               </div>
               <div class="card-body pt-0">
@@ -130,17 +136,17 @@
             <div class="pt-0 px-0">
               <div class="d-flex justify-content-around">
                 <% if rental.offer.game.platform == "Playstation 4" %>
-                  <button disabled class = "active-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
+                  <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 <% elsif rental.offer.game.platform == "Nintendo Switch"  %>
-                  <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "active-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 <% else rental.offer.game.platform == "XBox One" %>
-                  <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                  <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                  <button disabled class = "active-x"><i class="fab fa-xbox"></i></button>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
                 <% end %>
               </div>
               <div class="card-body pt-0">
@@ -152,11 +158,12 @@
                       <div class="d-flex justify-content-center">
                       <%= f.submit "Return", class: "btn btn-primary return-button flex-grow-1" %>
                       </div>
-                      <%= f.input :status, input_html: { value: 'Status: Returned' }, as: :hidden %>
+                      <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
                     <% end %>
                     <% else %>
                       <%= rental.status %>
                   <% end %>
+                  <%# How about adding a 'History' header and moving the rentals there? %>
               </div>
             </div>
           </div>

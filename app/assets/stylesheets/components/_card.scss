@@ -78,6 +78,12 @@
     color: black;
 }
 
+.game-cover-show {
+    height: 400px;
+    width: 280px;
+    object-fit: cover;
+}
+
 
 
 @media only screen and (max-width: 1200px) {
@@ -143,14 +149,25 @@
         position: relative;
         height: 400px;
         width: 230px;
-  }
+    }
 
-  .card-row-show h4 {
+    .card-row-show h4 {
     color: black;
     position: absolute;
     top: -60px;
     left: 360px;
     visibility: hidden;
- }
+    }
+
+    .game-cover-show {
+    height: 320px;
+    width: 200px;
+    object-fit: cover;
+    }
+
+    .container-show {
+        overflow-x:hidden;
+    }
+
 }
 

@@ -2,7 +2,7 @@
    <div class="container text-center container-show">
      <div class="row">
        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-           <img src="<%=@offer.game.image%>" alt="">
+           <img src="<%=@offer.game.image%>" alt="" class="game-cover-show">
        </div>
        <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 text-left banner-text-show">
            <h4>  <%=@offer.game.genre%></h4>
@@ -23,21 +23,21 @@
                       <div class="card card-show p-0 my-3">
                         <%= image_tag "2b_default_avatar.jpg", class: "avatar-show"%>
                         <div class="pt-0 px-0">
-                          <% if offer.game.platform == "Playstation 4"%>
+                          <% if offer.platform == "Playstation 4"%>
                             <div class="d-flex justify-content-around">
                               <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
                               <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
                               <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                             </div>
                           <% end %>
-                          <% if offer.game.platform == "Nintendo Switch"%>
+                          <% if offer.platform == "Nintendo Switch"%>
                             <div class="d-flex justify-content-around">
                               <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                               <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
                               <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                             </div>
                           <% end %>
-                          <% if offer.game.platform == "Xbox One"%>
+                          <% if offer.platform == "Xbox One"%>
                             <div class="d-flex justify-content-around">
                               <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                               <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
@@ -66,10 +66,6 @@
   </div>
 </div>
 
-<script>
-
-
-</script>
 
 
 
@@ -123,11 +119,11 @@
                 </div>
               <div class="platforms">
                 <div class="platforms-button">
-                  <% if offer.game.platform == "Playstation 4" %>
+                  <% if offer.platform == "Playstation 4" %>
                     <button disabled class ="active-p"><i class="fab fa-playstation"></i></button>
                     <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
                     <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
-                  <% elsif offer.game.platform == "Nintendo Switch"  %>
+                  <% elsif offer.platform == "Nintendo Switch"  %>
                     <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
                     <button disabled class ="active-s"><i class="fas fa-toggle-on"></i></button>
                     <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>

@@ -146,7 +146,7 @@
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
-                <%# Line below, should rental.user.username, rental.user be switched? currently displaying wrong user for me on MY RENTALS tab %>
+                <%# Line below: my rentals tab is displaying incorrect rentee %>
                 <p class="card-text text-secondary">(Rented from <%= link_to rental.user.username, rental.user %>)</p> 
                   <% if rental.status == 'Pending' %>
                     <%= simple_form_for (rental) do |f| %>

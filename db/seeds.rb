@@ -42,7 +42,7 @@ request3.body = 'fields artworks,cover.*,category,genres.name,name,rating, platf
 hash_as_string3 = http3.request(request3).body
 xbox_games_data_array = eval(hash_as_string3)
 
-
+PLATFORMS = ["Playstation 4", "Nintendo Switch", "Xbox One"] 
 
 
 
@@ -75,7 +75,6 @@ puts "Seeding playstation games"
 
     Game.create(
         title: playstation_game_name,
-        platform: "Playstation 4",
         genre: playstation_game_genre,
         image: playstation_game_image
     )
@@ -100,7 +99,6 @@ puts "Seeding nintendo games"
 
     Game.create(
         title: switch_game_name,
-        platform: "Nintendo Switch",
         genre: switch_game_genre,
         image: switch_game_image
     )
@@ -125,7 +123,6 @@ puts "Seeding xbox one games"
 
     Game.create(
         title: xbox_game_name,
-        platform: "Xbox One",
         genre: xbox_game_genre,
         image: xbox_game_image
     )
@@ -223,6 +220,7 @@ end
 200.times do
     Offer.create(
     user_id: user_ids_for_seed.sample,
-    game_id: game_ids_for_seed.sample
+    game_id: game_ids_for_seed.sample,
+    platform: PLATFORMS.sample 
 )
 end

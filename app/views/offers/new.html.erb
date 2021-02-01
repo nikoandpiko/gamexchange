@@ -1,10 +1,14 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-6">
-      <%= simple_form_for (@offer) do |f| %>
+      <%= simple_form_for (@offer)  do |f| %>
           <%= f.association :game %>
+          <%= f.input :platform %>
+         
           <%= f.submit "Add Offer", class: "btn btn-primary new-offer-button" %>
+         
       <% end %>
     </div>
   </div>
 </div>
+

@@ -42,7 +42,6 @@ request3.body = 'fields artworks,cover.*,category,genres.name,name,rating, platf
 hash_as_string3 = http3.request(request3).body
 xbox_games_data_array = eval(hash_as_string3)
 
-PLATFORMS = ["Playstation 4", "Nintendo Switch", "Xbox One"] 
 
 
 

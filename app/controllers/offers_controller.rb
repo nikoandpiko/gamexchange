@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+
   def index
     @offers = policy_scope(Offer)
   end
@@ -12,6 +13,7 @@ class OffersController < ApplicationController
 
   def new
       @offer = Offer.new
+      @platforms = ["Playstation 4", "Nintendo Switch", "Xbox One"] 
       authorize @offer
   end
 
@@ -27,7 +29,7 @@ class OffersController < ApplicationController
       if @offer.save
         redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
       else
-        render :new
+        redirect_to new_offer_path, notice: "Please choose a platform and a game"
       end
   end
 

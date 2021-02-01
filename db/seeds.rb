@@ -37,7 +37,7 @@ switch_games_data_array = eval(hash_as_string2)
 http3 = Net::HTTP.new('api.igdb.com', 443)
 http3.use_ssl = true
 request3 = Net::HTTP::Post.new(URI('https://api.igdb.com/v4/games'), {'Client-ID' => '9nu16mxtee9islxz909mkmudl8minu', 'Authorization' => 'Bearer sgbs6fxnj0thm1op0dzog9n5if0ygx'})
-request3.body = 'fields artworks,cover.*,category,genres.name,name,rating, platforms; where platforms = 49; limit 25;'
+request3.body = 'fields artworks,cover.*,category,genres.name,name,rating, platforms; where platforms = 49; limit 75;'
 
 hash_as_string3 = http3.request(request3).body
 xbox_games_data_array = eval(hash_as_string3)
@@ -64,7 +64,8 @@ puts "Seeding playstation games"
 100.times do
     playstation_game = playstation_games_data_array.sample
     playstation_game_name = playstation_game[:name]
-    playstation_game[:genres].nil? ? playstation_game_genre = "" : playstation_game_genre = playstation_game[:genres][0][:name]
+    if !playstation_game[:genres].nil? 
+    playstation_game_genre = playstation_game[:genres][0][:name]
     playstation_game_image_small = playstation_game[:cover][:url]
 
     playstation_game_image_small = playstation_game_image_small.split("/")
@@ -77,7 +78,8 @@ puts "Seeding playstation games"
         platform: "Playstation 4",
         genre: playstation_game_genre,
         image: playstation_game_image
-)
+    )
+    end
 end
 
 puts "Seeded"
@@ -89,9 +91,9 @@ puts "Seeding nintendo games"
 100.times do
     switch_game = switch_games_data_array.sample
     switch_game_name = switch_game[:name]
-    switch_game[:genres].nil? ? switch_game_genre = "" : switch_game_genre = switch_game[:genres][0][:name]
+    if !switch_game[:genres].nil?
+    switch_game_genre = switch_game[:genres][0][:name]
     switch_game_image_small = switch_game[:cover][:url]
-
     switch_game_image_small = switch_game_image_small.split("/")
     switch_game_image_small[6] = "t_cover_big"
     switch_game_image = switch_game_image_small.join("/")
@@ -101,7 +103,8 @@ puts "Seeding nintendo games"
         platform: "Nintendo Switch",
         genre: switch_game_genre,
         image: switch_game_image
-)
+    )
+    end
 end
 puts "Seeded"
 
@@ -111,7 +114,8 @@ puts "Seeding xbox one games"
 50.times do
     xbox_game = xbox_games_data_array.sample
     xbox_game_name = xbox_game[:name]
-    xbox_game[:genres].nil? ? xbox_game_genre = "" : xbox_game_genre = xbox_game[:genres][0][:name]
+    if !xbox_game[:genres].nil?
+    xbox_game_genre = xbox_game[:genres][0][:name]
     xbox_game[:cover][:url].nil? ? xbox_game_image_small = "" : xbox_game_image_small = xbox_game[:cover][:url]
 
     xbox_game_image_small = xbox_game_image_small.split("/")
@@ -124,7 +128,8 @@ puts "Seeding xbox one games"
         platform: "Xbox One",
         genre: xbox_game_genre,
         image: xbox_game_image
-)
+    )
+    end
 end
 puts "Seeded"
 
@@ -161,10 +166,21 @@ email: "5@5.com",
 password: "123456"
 )
 
+users_for_seed = User.all 
+user_ids_for_seed = []
+users_for_seed.each do |user|
+    user_ids_for_seed << user.id
+end
+
+games_for_seed = Game.all
+game_ids_for_seed = []
+games_for_seed.each do |game|
+    game_ids_for_seed << game.id
+end
 
 50.times do
     Offer.create(
-    user_id: rand(5..10),
-    game_id: rand(128..228)
+    user_id: user_ids_for_seed.sample,
+    game_id: game_ids_for_seed.sample
 )
 end

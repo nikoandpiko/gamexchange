@@ -137,32 +137,74 @@ puts "Seeded"
 puts "Creating users"
 
 User.create(
-username: "person1",
+username: Faker::Games::Witcher.monster,
 email: "1@1.com",
 password: "123456"
 )
 
 User.create(
-username: "person2",
+username: Faker::Games::Witcher.monster,
 email: "2@2.com",
 password: "123456"
 )
 
 User.create(
-username: "person3",
+username: Faker::Games::Witcher.monster,
 email: "3@3.com",
 password: "123456"
 )
 
 User.create(
-username: "person4",
+username: Faker::Games::Witcher.monster,
 email: "4@4.com",
 password: "123456"
 )
 
 User.create(
-username: "person5",
+username: Faker::Games::Witcher.monster,
 email: "5@5.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "6@6.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "7@7.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "8@8.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "9@9.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "10@10.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "11@11.com",
+password: "123456"
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "12@12.com",
 password: "123456"
 )
 
@@ -178,7 +220,7 @@ games_for_seed.each do |game|
     game_ids_for_seed << game.id
 end
 
-50.times do
+200.times do
     Offer.create(
     user_id: user_ids_for_seed.sample,
     game_id: game_ids_for_seed.sample

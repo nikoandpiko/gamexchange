@@ -144,20 +144,42 @@ password: "123456"
 )
 
 users_for_seed = User.all 
-user_ids_for_seed = []
-users_for_seed.each do |user|
-    user_ids_for_seed << user.id
-end
-
 games_for_seed = Game.all
-game_ids_for_seed = []
-games_for_seed.each do |game|
-    game_ids_for_seed << game.id
-end
 
 200.times do
-    Offer.create(
-    user_id: user_ids_for_seed.sample,
-    game_id: game_ids_for_seed.sample,
-)
+    game = games_for_seed.sample
+    user = users_for_seed.sample
+    if game.platforms.include?("130") && !game.platforms.include?("49") && !game.platforms.include?("48")
+        Offer.create(
+        user_id: user.id,
+        game_id: game.id,
+        platform: "Nintendo Switch"
+        )
+    elsif game.platforms.include?("48") && game.platforms.include?("49") && game.platforms.include?("130")
+        Offer.create(
+        user_id: user.id,
+        game_id: game.id,
+        platform: ["Xbox One", "Playstation 4", "Nintendo Switch"].sample
+        )
+    elsif game.platforms.include?("48") && game.platforms.include?("49") && !game.platforms.include?("130")
+        Offer.create(
+        user_id: user.id,
+        game_id: game.id,
+        platform: ["Xbox One", "Playstation 4"].sample
+        )
+    elsif game.platforms.include?("48") && !game.platforms.include?("49")
+        Offer.create(
+        user_id: user.id,
+        game_id: game.id,
+        platform: "Playstation 4"
+        )
+    elsif !game.platforms.include?("48") && game.platforms.include?("49")
+        Offer.create(
+        user_id: user.id,
+        game_id: game.id,
+        platform: "Xbox One"
+        )
+    end
 end
+
+puts "All done"

@@ -1,0 +1,41 @@
+
+.container-xl {
+    position: relative;
+}
+
+
+.btn-group {
+    position: relative;
+    position: absolute;
+    top: 40px;
+}
+
+.dropdown-select2 {
+    position: absolute;
+    width: 400px;
+    top: 8px;
+    right: -400px;
+}
+
+
+@media only screen and (max-width: 990px) {
+    .dropdown-select2 {
+        position: absolute;
+        width: 300px;
+        top: 8px;
+        right: -300px;
+    }
+
+
+}
+
+@media only screen and (max-width: 767px) {
+    .dropdown-select2{
+        position: absolute;
+        width: 200px;
+        top: 8px;
+        right: -200px;
+    }
+ 
+
+}

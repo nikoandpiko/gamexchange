@@ -6,11 +6,4 @@ const initStarRating = () => {
   });
 };
 
-const initStarRatingAgain = () => {
-  $('#public_rating').barrating({
-    theme: 'css-stars'
-  });
-};
-
 export { initStarRating };
-export { initStarRatingAgain };

@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import { multipleSelect } from "../components/select2";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -33,6 +34,7 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // profileTabs();
   // initUpdateNavbarOnScroll();
+  multipleSelect();
 });
 
 console.log("Hi.");

@@ -106,16 +106,32 @@
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
-                <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
                   <% if rental.status == 'Accepted' %>
+                    <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
                     <%= simple_form_for (rental) do |f| %>
-                      <%= f.submit "Return", class: "btn btn-light w-25" %>
-                      <%= f.input :status, input_html: { value: 'Returned' }, as: :hidden %>
+                      <%= f.submit "Request Return", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                      <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
                     <% end %>
-                    <% else %>
-                      <% if rental.status == 'Returned' %>
-                      <%= rental.status %>
-                      <% end %>
+                  <% elsif rental.status == 'Returned'%>
+                    <p class="card-text text-secondary">(Was rented out to <%= link_to rental.user.username, rental.user %> on #{Date.today})</p>
+
+                      <p>RETURNED</p>
+                      <!-- <%= rental.status %> -->
+                  <% elsif rental.status == 'Pending' %>
+                    <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
+
+                        <p>PENDING</p>
+                        <%= simple_form_for (rental) do |f| %>
+                          <%= f.submit "Accept", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                          <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
+                        <% end %>
+                        <%= simple_form_for (rental) do |f| %>
+                          <%= f.submit "Decline", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                          <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
+                        <% end %>
+
+                  <% elsif rental.status == 'Declined' %>
+                      <p>DECLINED</p>
                   <% end %>
               </div>
             </div>
@@ -153,15 +169,30 @@
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
                 <%# Line below: my rentals tab is displaying incorrect rentee %>
-                <p class="card-text text-secondary">(Rented from <%= link_to rental.user.username, rental.user %>)</p> 
-                  <% if rental.status == 'Pending' %>
+                  <% if rental.status == 'Accepted' %>
+                    <p class="card-text text-secondary">(Rented from <%= link_to rental.user.username, rental.user %>)</p>
                     <%= simple_form_for (rental) do |f| %>
                       <div class="d-flex justify-content-center">
-                      <%= f.submit "Return", class: "btn btn-primary return-button flex-grow-1" %>
+                      <%= f.submit "Return", class: "btn btn-primary return-button flex-grow-1", data: { confirm: 'Are you sure?' }  %>
                       </div>
                       <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
                     <% end %>
+                    <% elsif rental.status == 'Declined' %>
+                      <p class="card-text text-secondary">(Declined by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                    <% elsif rental.status == 'Returned' %>
+                      <p class="card-text text-secondary">(Returned on <%= Date.today %>  </p>
+                      <!-- Adding return date? -->
+                      <%= rental.status %>
+                    <% elsif rental.status == 'Request' %>
+                      <p class="card-text text-secondary">(Immediate return request by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                      <%= simple_form_for (rental) do |f| %>
+                        <div class="d-flex justify-content-center">
+                        <%= f.submit "Return it NOW", class: "btn btn-danger return-button flex-grow-1", data: { confirm: 'Are you sure?' }  %>
+                        </div>
+                        <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
+                      <% end %>
                     <% else %>
+                      <p class="card-text text-secondary">(Waiting approval by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
                       <%= rental.status %>
                   <% end %>
                   <%# - How about adding a 'History' header and moving the rentals there? %>

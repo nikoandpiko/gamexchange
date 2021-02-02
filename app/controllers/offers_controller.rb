@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+
   def index
     @offers = policy_scope(Offer)
   end
@@ -12,23 +13,25 @@ class OffersController < ApplicationController
 
   def new
       @offer = Offer.new
+      @platforms = ["Playstation 4", "Nintendo Switch", "Xbox One"] 
       authorize @offer
   end
 
-    def create
-        @game = Game.find(offer_params[:game_id])
-        @offer = Offer.new(
-            game: @game,
-            user: current_user
-        )
-        authorize @offer
+  def create
+      @game = Game.find(offer_params[:game_id])
+      @offer = Offer.new(
+          game: @game,
+          user: current_user,
+          platform: offer_params[:platform]
+      )
+      authorize @offer
 
-        if @offer.save
-          redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
-        else
-          render :new
-        end
-    end
+      if @offer.save
+        redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
+      else
+        redirect_to new_offer_path, notice: "Please choose a platform and a game"
+      end
+  end
 
   def update
   end
@@ -44,6 +47,6 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:game_id)
+    params.require(:offer).permit(:game_id, :platform)
   end
 end

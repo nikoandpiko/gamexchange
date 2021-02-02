@@ -3,6 +3,10 @@
     position: relative;
 }
 
+.button-user-show {
+    height: 35.8px !important;
+}
+
 
 .btn-group {
     position: relative;
@@ -13,8 +17,73 @@
 .dropdown-select2 {
     position: absolute;
     width: 400px;
-    top: 8px;
+    top: 0px;
     right: -400px;
+    line-height: 31px !important;
+}
+
+.select2-selection__rendered {
+    line-height: 31px !important;
+}
+.select2-container .select2-selection--single {
+    height: 35px !important;
+}
+.select2-selection__arrow {
+    height: 34px !important;
+}
+
+.ps4-button {
+    background-color: $secondary;
+    border: none;
+}
+
+.ps4-button:hover {
+    background-color: $primary;
+
+}
+
+.ps4-button .active {
+    background-color: $primary;
+    border: none;
+}
+
+.switch-button {
+    background-color: $secondary;
+    border: none;
+}
+
+.switch-button:hover {
+    background-color: $danger;
+}
+
+.switch-button .active {
+    background-color: $danger;
+    border: none;
+}
+
+.xbox-button {
+    color: white;
+    background-color: $secondary;
+    border: none;
+}
+
+
+.xbox-button:hover {
+    color: white;
+    background-color: $success;
+}
+
+.xbox-button .active {
+    color: white;
+    background-color: $success;
+    border: none;
+}
+
+.submit-button {
+    position: absolute;
+    width: 140px;
+    right: -550px;
+    top: 36px;
 }
 
 
@@ -26,6 +95,14 @@
         right: -300px;
     }
 
+    .submit-button {
+        position: absolute;
+        width: 140px;
+        right: -450px;
+        top: 36px;
+    }
+    
+
 
 }
 
@@ -36,6 +113,14 @@
         top: 8px;
         right: -200px;
     }
+
+    .submit-button {
+        position: absolute;
+        width: 140px;
+        right: -200px;
+        top: 0px;
+    }
+    
  
 
 }

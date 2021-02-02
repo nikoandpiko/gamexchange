@@ -15,17 +15,20 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
           <%= simple_form_for (@offer)  do |f| %>
             <div class="btn-group user">
-              <%= button_tag class: "btn btn-primary" do %>
+              <%= button_tag type: 'button', class: "btn btn-primary shadow-none ps4-button", :onclick => "ps4toggler()" do %>
                 <i class="fab fa-playstation"></i>
               <% end %>
-              <%= button_tag type: 'submit', class: "btn btn-danger" do %>
+              <%= button_tag type: 'button', class: "btn btn-danger shadow-none switch-button", :onclick => "switchtoggler()" do %>
                 <i class="fas fa-toggle-on"></i>
               <% end %>
-              <%= button_tag type: 'submit', class: "btn btn-success mr-2" do %>
+              <%= button_tag type: 'button', class: "btn btn-success shadow-none mr-2 xbox-button", :onclick => "xboxtoggler()" do %>
                 <i class="fab fa-xbox"></i>
               <% end %>
               <div class="dropdown-select2">
-                  <%= f.association :game, input_html: { class: 'multiple-select'}, label: false%>
+                  <%= f.association :game, input_html: { class: 'multiple-select'}, :size => "10x10", label: false%>
+              </div>
+              <div class="submit-button">
+                <%= f.submit "ADD GAME", class: "btn btn-dark button-text button-index button-user-show btn-md btn-block" %>
               </div>
             </div>
           <% end %>
@@ -197,4 +200,33 @@ function profileTabs(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+
+function ps4toggler() { 
+  const switchButton = document.querySelector(".switch-button");
+  const ps4 = document.querySelector(".ps4-button");
+  const xbox = document.querySelector(".xbox-button");
+  ps4.classList.toggle("active");
+  xbox.classList.remove("active");
+  switchButton.classList.remove("active");
+}
+
+function xboxtoggler() { 
+  const switchButton = document.querySelector(".switch-button");
+  const ps4 = document.querySelector(".ps4-button");
+  const xbox = document.querySelector(".xbox-button");
+  xbox.classList.toggle("active");
+  ps4.classList.remove("active");
+  switchButton.classList.remove("active");
+}
+
+function switchtoggler() { 
+  const switchButton = document.querySelector(".switch-button");
+  const ps4 = document.querySelector(".ps4-button");
+  const xbox = document.querySelector(".xbox-button");
+  switchButton.classList.toggle("active");
+  ps4.classList.remove("active");
+  xbox.classList.remove("active");
+}
+
 </script>

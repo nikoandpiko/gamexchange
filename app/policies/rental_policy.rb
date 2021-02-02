@@ -10,7 +10,9 @@ class RentalPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.user
+    # true
+    # user == record.user
+    user == record.offer.user
   end
 
 end

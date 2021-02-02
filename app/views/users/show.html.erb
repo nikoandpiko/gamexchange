@@ -169,7 +169,7 @@
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
                 <p class="card-text text-secondary">(Rented from <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
-                    <% if rental.status == 'Pending' %>
+                    <% if rental.status == 'Accepted' %>
                         <div class="d-flex justify-content-center">
                           <button type="button" class="btn btn-dark button-text button-index btn-lg btn-block" data-toggle="modal" data-target="#reviewModal-<%= rental.id %>">
                             Return
@@ -198,7 +198,22 @@
                               </div>
                             </div>
                           </div>
+                      <% elsif rental.status == 'Declined' %>
+                        <p class="card-text text-secondary">(Declined by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                      <% elsif rental.status == 'Returned' %>
+                        <p class="card-text text-secondary">(Returned on <%= Date.today %>  </p>
+                        <!-- Adding return date? -->
+                        <%= rental.status %>
+                      <% elsif rental.status == 'Request' %>
+                        <p class="card-text text-secondary">(Immediate return request by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                        <%= simple_form_for (rental) do |f| %>
+                          <div class="d-flex justify-content-center">
+                          <%= f.submit "Return it NOW", class: "btn btn-danger return-button flex-grow-1", data: { confirm: 'Are you sure?' }  %>
+                          </div>
+                          <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
+                        <% end %>
                       <% else %>
+                        <p class="card-text text-secondary">(Waiting approval by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
                         <%= rental.status %>
                     <% end %>
                   <%# - How about adding a 'History' header and moving the rentals there? %>

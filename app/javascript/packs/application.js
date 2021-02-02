@@ -30,11 +30,9 @@ import "bootstrap";
 // import { profileTabs } from "../components/tabs";
 // import { initUpdateNavbarOnScroll } from "../components/navbar";
 import { initStarRating } from '../plugins/init_star_rating';
-import { initStarRatingAgain } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
   initStarRating();
-  initStarRatingAgain();
   // profileTabs();
   // initUpdateNavbarOnScroll();
 });

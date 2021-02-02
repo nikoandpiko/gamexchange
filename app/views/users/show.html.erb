@@ -213,9 +213,9 @@
   <h3> (DEBUGGING) - Shows all reviews </h3>
   <ul class="list-group">
     <% Review.all.each do |review| %>
-      <li class="list-group-item" id="public_rating">Star rating: <%= review.rating %></li>
-      <li class="list-group-item"><%= review.content %></li>
-      <li class="list-group-item">Review by <%= review.reviewer&.username %></li>
+      <li style="color: Gold;" class="starz"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></li>
+      <li><%= review.content %></li>
+      <li>Review by <%= review.reviewer&.username %></li>
     <% end %>
   </ul>
 </div>

@@ -13,7 +13,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-          <%= simple_form_for (@offer)  do |f| %>
+          <%= simple_form_for (@offer), class: "new-offer-form"  do |f| %>
             <div class="btn-group user">
               <%= button_tag type: 'button', class: "btn btn-primary shadow-none ps4-button", :onclick => "ps4toggler()" do %>
                 <i class="fab fa-playstation"></i>
@@ -27,6 +27,7 @@
               <div class="dropdown-select2">
                   <%= f.association :game, input_html: { class: 'multiple-select'}, :size => "10x10", label: false%>
               </div>
+              <%= f.input :platform, collection: @platforms, :as => :hidden %>
               <div class="submit-button">
                 <%= f.submit "ADD GAME", class: "btn btn-dark button-text button-index button-user-show btn-md btn-block" %>
               </div>
@@ -229,4 +230,13 @@ function switchtoggler() {
   xbox.classList.remove("active");
 }
 
+function formSubmit() { 
+  const form = document.querySelector(".new-offer-form");
+  const switchButton = document.querySelector(".switch-button");
+  const ps4 = document.querySelector(".ps4-button");
+  const xbox = document.querySelector(".xbox-button");
+
+ 
+}
 </script>
+<%# CREATE FUNCTION TO SUBMIT PLATFORM AND GAME ON SUBMIT %>

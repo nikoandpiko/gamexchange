@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     authorize @user
     @rentals = @user.rentals
     @offers_for_user = @user.offers
+    @review = Review.new
   end
 
   private

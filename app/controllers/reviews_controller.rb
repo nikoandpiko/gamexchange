@@ -8,12 +8,17 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @user = User.find(params[:user_id])
-    @review.user_id = (params[:user_id])
-    @review.reviewer_id = current_user.username
+    @owner = User.find(params[:user_id])
+    # @review.user_id = (params[:user_id])
+    @review.user = @owner
+    @review.reviewer = current_user
     authorize @review
 
     if @review.save
+      # Marks rental as "Returned" after review has been created
+      @rental = Rental.find(params[:rental_id])
+      @rental.status = "Returned"
+      @rental.save
       redirect_to user_path(current_user), notice: 'Review added!'
     else
       render :new

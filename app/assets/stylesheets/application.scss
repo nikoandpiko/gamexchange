@@ -4,11 +4,11 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-
 $dark: #a279c2;
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "jquery-bar-rating/dist/themes/css-stars";
 
 // Your CSS partials
 @import "components/index";

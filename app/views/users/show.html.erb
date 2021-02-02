@@ -100,16 +100,32 @@
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
-                <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
                   <% if rental.status == 'Accepted' %>
+                    <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
                     <%= simple_form_for (rental) do |f| %>
-                      <%= f.submit "Return", class: "btn btn-light w-25" %>
-                      <%= f.input :status, input_html: { value: 'Returned' }, as: :hidden %>
+                      <%= f.submit "Request Return", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                      <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
                     <% end %>
-                    <% else %>
-                      <% if rental.status == 'Returned' %>
-                      <%= rental.status %>
-                      <% end %>
+                  <% elsif rental.status == 'Returned'%>
+                    <p class="card-text text-secondary">(Was rented out to <%= link_to rental.user.username, rental.user %> on #{Date.today})</p>
+
+                      <p>RETURNED</p>
+                      <!-- <%= rental.status %> -->
+                  <% elsif rental.status == 'Pending' %>
+                    <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
+
+                        <p>PENDING</p>
+                        <%= simple_form_for (rental) do |f| %>
+                          <%= f.submit "Accept", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                          <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
+                        <% end %>
+                        <%= simple_form_for (rental) do |f| %>
+                          <%= f.submit "Decline", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                          <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
+                        <% end %>
+
+                  <% elsif rental.status == 'Declined' %>
+                      <p>DECLINED</p>
                   <% end %>
               </div>
             </div>

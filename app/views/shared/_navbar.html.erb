@@ -11,6 +11,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+        <li class="nav-item message-icon"><i class="far fa-comment-dots fa-lg"></i></li>
+        <li class="nav-item message-icon"><i class="far fa-envelope fa-lg"></i></li>
         <li class="nav-item active">
         <li class="nav-item dropdown">
           <%= image_tag "https://avatarfiles.alphacoders.com/163/163785.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

@@ -30,11 +30,13 @@ import { multipleSelect } from "../components/select2";
 // import { initSelect2 } from '../components/init_select2';
 // import { profileTabs } from "../components/tabs";
 // import { initUpdateNavbarOnScroll } from "../components/navbar";
+import { initStarRating } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
+  initStarRating();
   // profileTabs();
   // initUpdateNavbarOnScroll();
   multipleSelect();
 });
 
-console.log("Hi.");
+console.log("Hope you're having a great day today.");

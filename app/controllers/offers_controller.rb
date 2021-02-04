@@ -22,6 +22,8 @@ class OffersController < ApplicationController
   end
 
   def create
+    offer_params[:game_id] == "" ? offer_params[:game_id] = nil : 
+
     @game = Game.find(offer_params[:game_id])
     @offer = Offer.new(
       game: @game,
@@ -33,7 +35,7 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
     else
-      redirect_to new_offer_path, notice: "Please choose a platform and a game"
+      redirect_to user_path(current_user), notice: "Please choose a platform and a game"
     end
   end
 

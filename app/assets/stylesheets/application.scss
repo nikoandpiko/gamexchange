@@ -8,7 +8,9 @@ $dark: #a279c2;
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import 'select2/dist/css/select2.css';
 @import "jquery-bar-rating/dist/themes/css-stars";
+
 
 // Your CSS partials
 @import "components/index";

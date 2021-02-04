@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @offer = Offer.new
+    @platforms = ["Playstation 4", "Nintendo Switch", "Xbox One"]
     authorize @user
     @rentals = @user.rentals
     @offers_for_user = @user.offers
@@ -14,7 +16,8 @@ class UsersController < ApplicationController
 
   private
 
-    def offer_params
-      params.require(:user).permit(:user_id)
-    end
+  def offer_params
+    params.require(:user).permit(:user_id)
+  end
+    
 end

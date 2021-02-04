@@ -3,77 +3,75 @@
     <div class="d-flex">
       <%# <%= image_tag "2b_default_avatar", class: "avatar-large" THANKS HEROKU! %>
       <img src="https://avatarfiles.alphacoders.com/163/163785.jpg" alt="2B" class="avatar-large">
-        <div class="ml-2">
-          <h3><%= @user.username %>'s</h3>
-          <h1>DASHBOARD</h1>
-          <button type="button" class="btn" data-toggle="modal" data-target="#starsModal">
-            <h3 class="profile-stars">★★★★☆</h3>
-          </button>
-          <div class="modal fade" id="starsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Reviews</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <ul class="list-group">
-                    <% Review.all.each do |review| %>
-                      <span class="border mt-3">
+      <div class="ml-2">
+        <h3><%= @user.username %>'s</h3>
+        <h1>DASHBOARD</h1>
+        <button type="button" class="btn" data-toggle="modal" data-target="#starsModal">
+          <h3 class="profile-stars">★★★★☆</h3>
+        </button>
+        <div class="modal fade" id="starsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Reviews</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ul class="list-group">
+                  <% Review.all.each do |review| %>
+                    <span class="border mt-3">
                       <div class="row">
-                      <p style="color: Gold;" class="starz pl-4 mt-4"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></p>
-                      <p class="pl-4 mt-4">Review by <%= link_to review.reviewer&.username %></p>
+                        <p style="color: Gold;" class="starz pl-4 mt-4"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></p>
+                        <p class="pl-4 mt-4">Review by <%= link_to review.reviewer&.username %></p>
                       </div>
-                      <p class="pl-4">"<%= review.content %>"</p><br>
-                      </span>
-                    <% end %>
-                  </ul>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                      <p class="pl-4">"<%= review.content %>"</p>
+                      <br>
+                    </span>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-          <%= simple_form_for (@offer), class: "new-offer-form"  do |f| %>
-            <div class="btn-group user">
-              <%= button_tag type: 'button', class: "btn btn-primary shadow-none ps4-button", :onclick => "ps4toggler()" do %>
-                <i class="fab fa-playstation"></i>
-              <% end %>
-              <%= button_tag type: 'button', class: "btn btn-danger shadow-none switch-button", :onclick => "switchtoggler()" do %>
-                <i class="fas fa-toggle-on"></i>
-              <% end %>
-              <%= button_tag type: 'button', class: "btn btn-success shadow-none mr-2 xbox-button", :onclick => "xboxtoggler()" do %>
-                <i class="fab fa-xbox"></i>
-              <% end %>
-              <div class="dropdown-select2">
-                  <%= f.association :game, input_html: { class: 'multiple-select'}, :size => "10x10", label: false%>
-              </div>
-              <%= f.input :platform, collection: @platforms, :as => :hidden %>
-              <div class="submit-button">
-                <%= f.submit "ADD GAME", class: "btn btn-danger button-text button-add-game button-user-show btn-md btn-block" %>
-              </div>
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <%= simple_form_for (@offer), class: "new-offer-form"  do |f| %>
+          <div class="btn-group user">
+            <%= button_tag type: 'button', class: "btn btn-primary shadow-none ps4-button", :onclick => "ps4toggler()" do %>
+              <i class="fab fa-playstation"></i>
+            <% end %>
+            <%= button_tag type: 'button', class: "btn btn-danger shadow-none switch-button", :onclick => "switchtoggler()" do %>
+              <i class="fas fa-toggle-on"></i>
+            <% end %>
+            <%= button_tag type: 'button', class: "btn btn-success shadow-none mr-2 xbox-button", :onclick => "xboxtoggler()" do %>
+              <i class="fab fa-xbox"></i>
+            <% end %>
+            <div class="dropdown-select2">
+              <%= f.association :game, input_html: { class: 'multiple-select'}, :size => "10x10", label: false%>
             </div>
-          <% end %>
-        </div>
+            <%= f.input :platform, collection: @platforms, :as => :hidden %>
+            <div class="submit-button">
+              <%= f.submit "ADD GAME", class: "btn btn-drk button-text button-index button-user-show btn-md btn-block" %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
+  </div>
 </div>
-
 <div class="tab">
   <button class="tablinks" onclick="profileTabs(event, 'mylistedgames')">My Listed Games</button>
   <button class="tablinks" onclick="profileTabs(event, 'rentedout')">Rented Out</button>
   <button class="tablinks" onclick="profileTabs(event, 'myrentals')">My Rentals</button>
 </div>
-
 <%# Do the <button disabled class = "active-p"> etc need to remain or can it be replaced with <p> index card code> %>
 <div id="mylistedgames" class="tabcontent">
   <div class="container">
@@ -83,27 +81,27 @@
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">
             <div class="pt-0 px-0">
-                <% if offer.platform == "Playstation 4" %>
-                  <div class="d-flex justify-content-around">
-                    <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
-                  </div>
-                <% end %>
-                <% if offer.platform == "Nintendo Switch" %>
-                  <div class="d-flex justify-content-around">
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
-                  </div>
-                <% end %>
-                <% if offer.platform == "Xbox One" %>
-                  <div class="d-flex justify-content-around">
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
-                  </div>
-                <% end %>
+              <% if offer.platform == "Playstation 4" %>
+                <div class="d-flex justify-content-around">
+                  <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
+                </div>
+              <% end %>
+              <% if offer.platform == "Nintendo Switch" %>
+                <div class="d-flex justify-content-around">
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
+                </div>
+              <% end %>
+              <% if offer.platform == "Xbox One" %>
+                <div class="d-flex justify-content-around">
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                  <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
+                </div>
+              <% end %>
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= offer.game.genre %></p>
@@ -116,7 +114,6 @@
     </div>
   </div>
 </div>
-
 <div id="rentedout" class="tabcontent">
   <div class="container">
     <div class="card-deck">
@@ -125,60 +122,56 @@
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">
-                <% if rental.offer.platform == "Playstation 4" %>
+              <% if rental.offer.platform == "Playstation 4" %>
                 <div class="d-flex justify-content-around">
                   <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
-                <% end %>
-                <% if rental.offer.platform == "Nintendo Switch" %>
+              <% end %>
+              <% if rental.offer.platform == "Nintendo Switch" %>
                 <div class="d-flex justify-content-around">
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
-                <% end %>
-                <% if rental.offer.platform == "Xbox One" %>
+              <% end %>
+              <% if rental.offer.platform == "Xbox One" %>
                 <div class="d-flex justify-content-around">
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
-                <% end %>
+              <% end %>
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
-                  <% if rental.status == 'Accepted' %>
-                    <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
-                    <%= simple_form_for (rental) do |f| %>
-                      <%= f.submit "Request Return", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
-                      <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
-                    <% end %>
-
+                <% if rental.status == 'Accepted' %>
+                  <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
+                  <%= simple_form_for (rental) do |f| %>
+                    <%= f.submit "Request Return", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                    <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
+                  <% end %>
                 <% elsif rental.status == 'Returned'%>
                   <p class="card-text text-secondary">
                     (Was rented out to <%= link_to rental.user.username, rental.user %> on #{Date.today})
                   </p>
                   <%# Have RETURNED status games automatically go back to 'My Listed Games'? %>
                   <p>RETURNED</p>
-
-                  <% elsif rental.status == 'Pending' %>
-                    <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
-
-                        <p>PENDING</p>
-                        <%= simple_form_for (rental) do |f| %>
-                          <%= f.submit "Accept", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
-                          <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
-                        <% end %>
-                        <%= simple_form_for (rental) do |f| %>
-                          <%= f.submit "Decline", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
-                          <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
-                        <% end %>
-
-                  <% elsif rental.status == 'Declined' %>
-                      <p>DECLINED</p>
+                <% elsif rental.status == 'Pending' %>
+                  <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
+                  <p>PENDING</p>
+                  <%= simple_form_for (rental) do |f| %>
+                    <%= f.submit "Accept", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                    <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
                   <% end %>
+                  <%= simple_form_for (rental) do |f| %>
+                    <%= f.submit "Decline", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
+                    <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
+                  <% end %>
+                <% elsif rental.status == 'Declined' %>
+                  <p>DECLINED</p>
+                <% end %>
               </div>
             </div>
           </div>
@@ -187,7 +180,6 @@
     </div>
   </div>
 </div>
-
 <div id="myrentals" class="tabcontent">
   <div class="container">
     <div class="card-deck">
@@ -196,79 +188,79 @@
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">
-                <% if rental.offer.platform == "Playstation 4" %>
+              <% if rental.offer.platform == "Playstation 4" %>
                 <div class="d-flex justify-content-around">
                   <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
-                <% end %>
-                <% if rental.offer.platform == "Nintendo Switch" %>
+              <% end %>
+              <% if rental.offer.platform == "Nintendo Switch" %>
                 <div class="d-flex justify-content-around">
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
-                <% end %>
-                <% if rental.offer.platform == "Xbox One" %>
+              <% end %>
+              <% if rental.offer.platform == "Xbox One" %>
                 <div class="d-flex justify-content-around">
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
                   <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
-                 </div>
-                <% end %>
+                </div>
+              <% end %>
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
                 <p class="card-text text-secondary">(Rented from <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
-                    <% if rental.status == 'Accepted' %>
-                        <div class="d-flex justify-content-center">
-                          <button type="button" class="btn btn-dark button-text button-index btn-lg btn-block" data-toggle="modal" data-target="#reviewModal-<%= rental.id %>">
-                            Return
+                <% if rental.status == 'Accepted' %>
+                  <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-dark button-text button-index btn-lg btn-block" data-toggle="modal" data-target="#reviewModal-<%= rental.id %>">
+                      Return
+                    </button>
+                  </div>
+                  <div class="modal fade" id="reviewModal-<%= rental.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Leave a Review</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                          <div class="modal fade" id="reviewModal-<%= rental.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLongTitle">Leave a Review</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                  <%= simple_form_for [ rental.offer.user, @review ] do |f| %>
-                                    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
-                                    <%= f.input :content %>
-                                    <%= hidden_field_tag :rental_id, rental.id %>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-                                      <%= f.submit "Return and Review", class: "btn btn-primary" %>
-                                    </div>
-                                  <% end %>
-                                </div>
-                              </div>
+                        <div class="modal-body">
+                          <%= simple_form_for [ rental.offer.user, @review ] do |f| %>
+                            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
+                            <%= f.input :content %>
+                            <%= hidden_field_tag :rental_id, rental.id %>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+                              <%= f.submit "Return and Review", class: "btn btn-primary" %>
                             </div>
-                          </div>
-                      <% elsif rental.status == 'Declined' %>
-                        <p class="card-text text-secondary">(Declined by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
-                      <% elsif rental.status == 'Returned' %>
-                        <p class="card-text text-secondary">(Returned on <%= Date.today %>  </p>
-                        <!-- Adding return date? -->
-                        <%= rental.status %>
-                      <% elsif rental.status == 'Request' %>
-                        <p class="card-text text-secondary">(Immediate return request by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
-                        <%= simple_form_for (rental) do |f| %>
-                          <div class="d-flex justify-content-center">
-                          <%= f.submit "Return it NOW", class: "btn btn-danger return-button flex-grow-1", data: { confirm: 'Are you sure?' }  %>
-                          </div>
-                          <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
-                        <% end %>
-                      <% else %>
-                        <p class="card-text text-secondary">(Waiting approval by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
-                        <%= rental.status %>
-                    <% end %>
-                  <%# - How about adding a 'History' header and moving the rentals there? %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% elsif rental.status == 'Declined' %>
+                  <p class="card-text text-secondary">(Declined by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                <% elsif rental.status == 'Returned' %>
+                  <p class="card-text text-secondary">(Returned on <%= Date.today %>  </p>
+                  <!-- Adding return date? -->
+                  <%= rental.status %>
+                <% elsif rental.status == 'Request' %>
+                  <p class="card-text text-secondary">(Immediate return request by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                  <%= simple_form_for (rental) do |f| %>
+                    <div class="d-flex justify-content-center">
+                      <%= f.submit "Return it NOW", class: "btn btn-danger return-button flex-grow-1", data: { confirm: 'Are you sure?' }  %>
+                    </div>
+                    <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
+                  <% end %>
+                <% else %>
+                  <p class="card-text text-secondary">(Waiting approval by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                  <%= rental.status %>
+                <% end %>
+                <%# - How about adding a 'History' header and moving the rentals there? %>
               </div>
             </div>
           </div>
@@ -276,7 +268,6 @@
       <% end %>
     </div>
   </div>
-
   <h3> (DEBUGGING) - Shows all reviews </h3>
   <ul class="list-group">
     <% Review.all.each do |review| %>
@@ -286,56 +277,55 @@
     <% end %>
   </ul>
 </div>
-
 <%# To Do: Get turbolinks working %>
 <script>
-function profileTabs(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+  function profileTabs(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  
+  const att = document.createAttribute("value");
+  const platformInput = document.getElementById("offer_platform");
+  platformInput.setAttributeNode(att);
+  function ps4toggler() {
+    const platformInput = document.getElementById("offer_platform");
+    const switchButton = document.querySelector(".switch-button");
+    const ps4 = document.querySelector(".ps4-button");
+    const xbox = document.querySelector(".xbox-button");
+    ps4.classList.toggle("active");
+    xbox.classList.remove("active");
+    switchButton.classList.remove("active");
+    platformInput.value = "Playstation 4";
   }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-const att = document.createAttribute("value");
-const platformInput = document.getElementById("offer_platform");
-platformInput.setAttributeNode(att);
-function ps4toggler() {
-  const platformInput = document.getElementById("offer_platform");
-  const switchButton = document.querySelector(".switch-button");
-  const ps4 = document.querySelector(".ps4-button");
-  const xbox = document.querySelector(".xbox-button");
-  ps4.classList.toggle("active");
-  xbox.classList.remove("active");
-  switchButton.classList.remove("active");
-  platformInput.value = "Playstation 4";
-}
-
-function xboxtoggler() {
-  const platformInput = document.getElementById("offer_platform");
-  const switchButton = document.querySelector(".switch-button");
-  const ps4 = document.querySelector(".ps4-button");
-  const xbox = document.querySelector(".xbox-button");
-  xbox.classList.toggle("active");
-  ps4.classList.remove("active");
-  switchButton.classList.remove("active");
-  platformInput.value = "Xbox One";
-}
-
-function switchtoggler() {
-  const platformInput = document.getElementById("offer_platform");
-  const switchButton = document.querySelector(".switch-button");
-  const ps4 = document.querySelector(".ps4-button");
-  const xbox = document.querySelector(".xbox-button");
-  switchButton.classList.toggle("active");
-  ps4.classList.remove("active");
-  xbox.classList.remove("active");
-  platformInput.value = "Nintendo Switch";
-}
+  
+  function xboxtoggler() {
+    const platformInput = document.getElementById("offer_platform");
+    const switchButton = document.querySelector(".switch-button");
+    const ps4 = document.querySelector(".ps4-button");
+    const xbox = document.querySelector(".xbox-button");
+    xbox.classList.toggle("active");
+    ps4.classList.remove("active");
+    switchButton.classList.remove("active");
+    platformInput.value = "Xbox One";
+  }
+  
+  function switchtoggler() {
+    const platformInput = document.getElementById("offer_platform");
+    const switchButton = document.querySelector(".switch-button");
+    const ps4 = document.querySelector(".ps4-button");
+    const xbox = document.querySelector(".xbox-button");
+    switchButton.classList.toggle("active");
+    ps4.classList.remove("active");
+    xbox.classList.remove("active");
+    platformInput.value = "Nintendo Switch";
+  }
 </script>

@@ -78,26 +78,26 @@
 <div id="mylistedgames" class="tabcontent">
   <div class="container">
     <div class="card-deck">
-      <% @offers_for_user.each do |offer| %>
+      <% @user.rentals_as_owner.each do |rental| %>
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
           <div class="card card-offer-profile p-0 my-3">
-            <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">
+            <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.title %>" class="card-index-image">
             <div class="pt-0 px-0">
-                <% if offer.platform == "Playstation 4" %>
+                <% if rental.offer.platform == "Playstation 4" %>
                   <div class="d-flex justify-content-around">
                     <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
                     <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
                     <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                   </div>
                 <% end %>
-                <% if offer.platform == "Nintendo Switch" %>
+                <% if rental.offer.platform == "Nintendo Switch" %>
                   <div class="d-flex justify-content-around">
                     <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                     <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
                     <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
                   </div>
                 <% end %>
-                <% if offer.platform == "Xbox One" %>
+                <% if rental.offer.platform == "Xbox One" %>
                   <div class="d-flex justify-content-around">
                     <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
                     <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
@@ -105,9 +105,20 @@
                   </div>
                 <% end %>
               <div class="card-body pt-0">
-                <h5 class="card-title"><%= offer.game.title %></h5>
-                <p class="card-text text-secondary"><%= offer.game.genre %></p>
-                <p class="card-text text-secondary">(Available for rent)</p>
+                <h5 class="card-title"><%= rental.offer.game.title %></h5>
+                <%= rental.status %>
+                <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
+                <% if rental.status == "Declined" %>
+                  <p class="card-text text-secondary">(Available for rent)</p>
+                <% elsif rental.status == "Returned" %>
+                  <p class="card-text text-secondary">(Available for rent)</p>
+                <% elsif rental.status == "Accepted" %>
+                  <p class="card-text text-secondary">(Unavailable for rent)</p>
+                <% elsif rental.status == "Request" %>
+                  <p class="card-text text-secondary">(Unavailable for rent)</p>
+                <% else %>
+                  <p class="card-text text-secondary">(Unavailable for rent)</p>
+                <% end %>
               </div>
             </div>
           </div>
@@ -121,7 +132,7 @@
   <div class="container">
     <div class="card-deck">
       <% @user.rentals_as_owner.each do |rental| %>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">
@@ -146,39 +157,42 @@
                   <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
                 <% end %>
-              <div class="card-body pt-0">
-                <h5 class="card-title"><%= rental.offer.game.title %></h5>
-                <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
+              <div class="card-body pt-0 card-flex-column">
+                <div>
+                  <h5 class="card-title"><%= rental.offer.game.title %></h5>
+                  <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
+                </div>
                   <% if rental.status == 'Accepted' %>
-                    <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %>)</p>
-                    <%= simple_form_for (rental) do |f| %>
-                      <%= f.submit "Request Return", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
-                      <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
-                    <% end %>
-
-                <% elsif rental.status == 'Returned'%>
-                  <p class="card-text text-secondary">
-                    (Was rented out to <%= link_to rental.user.username, rental.user %> on #{Date.today})
-                  </p>
-                  <%# Have RETURNED status games automatically go back to 'My Listed Games'? %>
-                  <p>RETURNED</p>
-
+                    <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %> on <%= Date.today %>)</p>
+                    <div class="d-flex justify-content-center">
+                      <%= simple_form_for (rental) do |f| %>
+                        <%= f.submit "Request Return", class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+                        <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
+                      <% end %>
+                    </div>
+                  <% elsif rental.status == 'Returned'%>
+                    <p class="card-text text-secondary">
+                      (Was rented out to <%= link_to rental.user.username, rental.user %> on <%= Date.today %>)
+                    </p>
+                    <%# Have RETURNED status games automatically go back to 'My Listed Games'? %>
+                    <p class="status-text returned">RETURNED</p>
                   <% elsif rental.status == 'Pending' %>
                     <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
 
-                        <p>PENDING</p>
+                      <p class="status-text pending">PENDING</p>
+                      <div class="d-flex justify-content-center">
                         <%= simple_form_for (rental) do |f| %>
-                          <%= f.submit "Accept", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
-                          <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
+                            <%= f.submit "Accept", class: "btn btn-success w-auto", data: { confirm: 'Are you sure?' } %>
+                            <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
                         <% end %>
                         <%= simple_form_for (rental) do |f| %>
-                          <%= f.submit "Decline", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
-                          <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
+                            <%= f.submit "Decline", class: "btn btn-danger w-auto", data: { confirm: 'Are you sure?' } %>
+                            <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
                         <% end %>
-
-                  <% elsif rental.status == 'Declined' %>
-                      <p>DECLINED</p>
-                  <% end %>
+                      <div>
+                    <% elsif rental.status == 'Declined' %>
+                      <p class="status-text declined">DECLINED</p>
+                    <% end %>
               </div>
             </div>
           </div>
@@ -192,7 +206,7 @@
   <div class="container">
     <div class="card-deck">
       <% @rentals.each do |rental| %>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">
@@ -220,8 +234,8 @@
               <div class="card-body pt-0">
                 <h5 class="card-title"><%= rental.offer.game.title %></h5>
                 <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
-                <p class="card-text text-secondary">(Rented from <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
                     <% if rental.status == 'Accepted' %>
+                      <p class="card-text text-secondary">(Rented from <%= link_to rental.offer.user.username, rental.offer.user %> on <%= Date.today %>)</p>
                         <div class="d-flex justify-content-center">
                           <button type="button" class="btn btn-dark button-text button-index btn-lg btn-block" data-toggle="modal" data-target="#reviewModal-<%= rental.id %>">
                             Return

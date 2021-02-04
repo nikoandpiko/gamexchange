@@ -136,7 +136,7 @@
                   <p class="card-text text-secondary">
                     (Was rented out to <%= link_to rental.user.username, rental.user %>)
                   </p>
-                  <%# Have RETURNED status games automatically go back to My Listed Games? %>
+                  <%# Have RETURNED status games automatically go back to 'My Listed Games'? %>
                   <p>RETURNED</p>
                   <% elsif rental.status == 'Pending' %>
                     <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>

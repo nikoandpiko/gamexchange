@@ -11,7 +11,8 @@
 .btn-group {
     position: relative;
     position: absolute;
-    top: 40px;
+    top: 0px;
+    left: -400px;
 }
 
 .dropdown-select2 {
@@ -80,6 +81,7 @@
 }
 
 .submit-button {
+    background-color: $danger;
     position: absolute;
     width: 140px;
     right: -550px;
@@ -92,16 +94,16 @@
         position: absolute;
         width: 300px;
         top: 0px;
-        right: -300px;
+        right: -745px;
     }
 
     .submit-button {
         position: absolute;
         width: 140px;
-        right: -450px;
+        right: -900px;
         top: 36px;
     }
-    
+
 
 
 }
@@ -110,17 +112,24 @@
     .dropdown-select2{
         position: absolute;
         width: 200px;
-        top: 0px;
-        right: -200px;
+        top: 40px;
+        right: -700px;
     }
 
     .submit-button {
         position: absolute;
         width: 140px;
-        right: -200px;
-        top: -4px;
+        right: -700px;
+        top: 34px;
     }
-    
- 
+
+    .btn-group {
+        position: relative;
+        position: absolute;
+        top: 0px;
+        left: -400px;
+    }
+
+
 
 }

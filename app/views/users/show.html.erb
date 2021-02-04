@@ -6,7 +6,37 @@
         <div class="ml-2">
           <h3><%= @user.username %>'s</h3>
           <h1>DASHBOARD</h1>
-          <h3 class="profile-stars">★★★★☆</h3> 
+          <button type="button" class="btn" data-toggle="modal" data-target="#starsModal">
+            <h3 class="profile-stars">★★★★☆</h3>
+          </button>
+          <div class="modal fade" id="starsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Reviews</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-group">
+                    <% Review.all.each do |review| %>
+                      <span class="border mt-3">
+                      <div class="row">
+                      <p style="color: Gold;" class="starz pl-4 mt-4"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></p>
+                      <p class="pl-4 mt-4">Review by <%= link_to review.reviewer&.username %></p>
+                      </div>
+                      <p class="pl-4">"<%= review.content %>"</p><br>
+                      </span>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -125,11 +155,14 @@
                       <%= f.submit "Request Return", class: "btn btn-light w-auto", data: { confirm: 'Are you sure?' } %>
                       <%= f.input :status, input_html: { value: 'Request' }, as: :hidden %>
                     <% end %>
-                  <% elsif rental.status == 'Returned'%>
-                    <p class="card-text text-secondary">(Was rented out to <%= link_to rental.user.username, rental.user %> on #{Date.today})</p>
 
-                      <p>RETURNED</p>
-                      <!-- <%= rental.status %> -->
+                <% elsif rental.status == 'Returned'%>
+                  <p class="card-text text-secondary">
+                    (Was rented out to <%= link_to rental.user.username, rental.user %> on #{Date.today})
+                  </p>
+                  <%# Have RETURNED status games automatically go back to 'My Listed Games'? %>
+                  <p>RETURNED</p>
+
                   <% elsif rental.status == 'Pending' %>
                     <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
 
@@ -273,7 +306,7 @@ function profileTabs(evt, tabName) {
 const att = document.createAttribute("value");
 const platformInput = document.getElementById("offer_platform");
 platformInput.setAttributeNode(att);
-function ps4toggler() { 
+function ps4toggler() {
   const platformInput = document.getElementById("offer_platform");
   const switchButton = document.querySelector(".switch-button");
   const ps4 = document.querySelector(".ps4-button");
@@ -284,7 +317,7 @@ function ps4toggler() {
   platformInput.value = "Playstation 4";
 }
 
-function xboxtoggler() { 
+function xboxtoggler() {
   const platformInput = document.getElementById("offer_platform");
   const switchButton = document.querySelector(".switch-button");
   const ps4 = document.querySelector(".ps4-button");
@@ -295,7 +328,7 @@ function xboxtoggler() {
   platformInput.value = "Xbox One";
 }
 
-function switchtoggler() { 
+function switchtoggler() {
   const platformInput = document.getElementById("offer_platform");
   const switchButton = document.querySelector(".switch-button");
   const ps4 = document.querySelector(".ps4-button");

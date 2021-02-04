@@ -45,18 +45,33 @@
                             </div>
                           <% end %>
                           <div class="card-body-show pt-0">
-                            <h5 class="card-title text-center"><%= offer.user.username %></h5>
+                            <h5 class="card-title text-center"><%= link_to offer.user.username, user_path(offer.user) %></h5>
                             <div class="stars d-flex justify-content-center">
+                            <% @star = [3,4,5].sample %>
+                            <% if @star == 3 %>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star disabled"></i>
+                              <i class="fas fa-star disabled"></i>
+                            <% elsif @star == 4 %>
                               <i class="fas fa-star active mr-2"></i>
                               <i class="fas fa-star active mr-2"></i>
                               <i class="fas fa-star active mr-2"></i>
                               <i class="fas fa-star active mr-2"></i>
                               <i class="fas fa-star disabled"></i>
+                            <% else %>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                            <% end %>
                             </div>
                           </div>
                         </div>
                         <%= simple_form_for [offer, Rental.new] do |f| %>
-                            <%= f.submit "RENT", class: "btn btn-primary button-text button-index btn-lg btn-block rent-button" %>
+                            <%= f.submit "RENT", class: "btn btn-dark button-text button-index btn-lg btn-block rent-button" %>
                         <% end %>   
                 </div>
               </div>                       

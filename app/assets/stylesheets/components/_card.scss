@@ -16,6 +16,17 @@
     position: relative;
 }
 
+.card-body-show a {
+    text-decoration: none;
+    color: black;
+}
+
+.card-body-show a:hover {
+    text-decoration: none;
+    color: black;
+    opacity: 60%;
+}
+
 .card-row-show h4 {
     color: black;
     position: absolute;
@@ -32,6 +43,10 @@
     color: white
 }
 
+.stars .active {
+    color: #f6b900;
+    font-size: 24px;
+}
 
 .avatar-show {
     border-radius: 50%;
@@ -48,9 +63,9 @@
 }
 
 .stars .disabled {
-    color: black;
     font-size: 24px;
-    opacity: 50%;
+    color: #f6b900;
+    opacity: 0.4;
 }
 
 .button-index {
@@ -61,6 +76,27 @@
   background-color: #673ab7;
   border-color: #673bb7;
 }
+
+.button-add-game {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    background-color: $danger;
+    border-color: $danger;
+}
+
+.button-add-game:hover {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    background-color:  rgb(238, 61, 64);
+    border-color: rgb(238, 61, 64);
+    text-decoration: none;
+    color:white;
+}
+  
 
 .button-index a {
   color: white;

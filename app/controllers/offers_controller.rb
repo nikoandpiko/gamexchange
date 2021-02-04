@@ -3,9 +3,26 @@ class OffersController < ApplicationController
 
   def index
     if params[:query].present?
+      
       @offers = policy_scope(Offer.search_by_title(params[:query]))
+      @offer_dup_checker = []
+      @indexed_offers = []
+      @offers.each do |offer|
+        if !@offer_dup_checker.include?([offer.game.title, offer.platform])
+          @offer_dup_checker << [offer.game.title, offer.platform]
+          @indexed_offers << offer
+        end
+      end
     else
       @offers = policy_scope(Offer)
+      @offer_dup_checker = []
+      @indexed_offers = []
+      @offers.each do |offer|
+        if !@offer_dup_checker.include?([offer.game.title, offer.platform])
+          @offer_dup_checker << [offer.game.title, offer.platform]
+          @indexed_offers << offer
+        end
+      end
     end
   end
 
@@ -22,6 +39,8 @@ class OffersController < ApplicationController
   end
 
   def create
+    offer_params[:game_id] == "" ? offer_params[:game_id] = nil : 
+
     @game = Game.find(offer_params[:game_id])
     @offer = Offer.new(
       game: @game,
@@ -33,7 +52,7 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
     else
-      redirect_to new_offer_path, notice: "Please choose a platform and a game"
+      redirect_to user_path(current_user), notice: "Please choose a platform and a game"
     end
   end
 

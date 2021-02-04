@@ -3,22 +3,24 @@
     <div class="col-sm-12 col-md-12 col-lg-12 text-left">
       <br>
       <br>
-      <h1>GameXchange</h1>
-      <h4>Exchange your favorite games with your friends.</h4>
-      <div class="input-group mb-3">
-        <%= form_tag offers_path, method: :get do %>
-          <%= text_field_tag :query,
-    params[:query], class: "form-control", placeholder: "Find a game" %> <% end %>
-        <div class="input-group-append">
-          <button class="btn btn-dark btn-index" type="submit">Search</button>
-        </div>
+      <h1><strong>GAME</strong>XCHANGE</h1>
+      <div class="d-flex" style="width: 500px;">
+        <p class="flex-grow-1 p-1 mb-1 progress-bar bg-blue" style="height: 10px"></p>
+        <p class="flex-grow-1 p-1 mb-1 progress-bar bg-danger width: 25%"></p>
+        <p class="flex-grow-1 p-1 mb-1 progress-bar bg-warning width: 25%"></p>
+        <p class="flex-grow-1 p-1 mb-1 progress-bar bg-info width: 25%"></p>
       </div>
+      <h4>Exchange your favorite games with your friends</h4>
       <div class="input-group mb-3">
-        <%= form_tag offers_path, method: :get do %>
-          <%= text_field_tag :query,
+        <div class="row justify-content">
+          <div class="col-lg-10">
+            <%= form_tag offers_path, method: :get do %>
+              <%= text_field_tag :query,
     params[:query], class: "form-control", placeholder: "Find a game" %>
-          <div class="input-group-append">
-            <%= submit_tag "Search", class: "btn btn-dark btn-index" %>
+            </div>
+            <div class="col-lg-2">
+              <%= submit_tag "Search", class: "btn btn-dark button-text button-index btn-md" %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -27,7 +29,7 @@
 </div>
 <div class="container">
   <div class="card-deck">
-    <% @offers.each do |offer| %>
+    <% @indexed_offers.each do |offer| %>
       <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
         <div class="card card-index p-0 my-3">
           <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">

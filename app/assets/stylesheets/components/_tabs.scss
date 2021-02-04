@@ -1,7 +1,7 @@
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #673ab7;
+  color: white;
   display: flex;
   justify-content: space-around;
 }
@@ -15,23 +15,28 @@
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  border-bottom: solid 8px #8c69cc;
+  color: #8c69cc;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+  background-color: #673ab7;
+  color: white;
+  border-bottom: solid 8px #30155f;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: #673ab7;
+  color: white;
+  border-bottom: solid 8px #30155f;
 }
 
 /* Style the tab content */
 .tabcontent {
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
   border-top: none;
 }
 

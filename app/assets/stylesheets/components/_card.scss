@@ -32,6 +32,10 @@
     color: white
 }
 
+.stars .active {
+    color: #f6b900;
+    font-size: 24px;
+}
 
 .avatar-show {
     border-radius: 50%;
@@ -48,9 +52,9 @@
 }
 
 .stars .disabled {
-    color: black;
     font-size: 24px;
-    opacity: 50%;
+    color: #f6b900;
+    opacity: 0.4;
 }
 
 .button-index {

@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.5)), url(https://i.redd.it/vrno30rkp1w51.png);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)), url(https://i.redd.it/vrno30rkp1w51.png);">
   <div class="container-xl">
     <div class="d-flex">
       <%# <%= image_tag "2b_default_avatar", class: "avatar-large" THANKS HEROKU! %>
@@ -7,26 +7,34 @@
           <h3><%= @user.username %>'s</h3>
           <h1>DASHBOARD</h1>
           <button type="button" class="btn" data-toggle="modal" data-target="#starsModal">
-            <h3 class="profile-stars">★★★★☆</h3>
+            <h3 class="stars">
+              <i class="fas fa-star active"></i>
+              <i class="fas fa-star active"></i>
+              <i class="fas fa-star active"></i>
+              <i class="fas fa-star active"></i>
+              <i class="fas fa-star disabled"></i>
+            </h3>
           </button>
           <div class="modal fade" id="starsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Reviews</h5>
+                  <h5 class="modal-title" id="exampleModalLongTitle"><%= @user.username %>'s Reviews</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body no-padding">
                   <ul class="list-group">
                     <% Review.all.each do |review| %>
                       <span class="border mt-3">
                       <div class="row">
                       <p style="color: Gold;" class="starz pl-4 mt-4"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></p>
-                      <p class="pl-4 mt-4">Review by <%= link_to review.reviewer&.username %></p>
+                      <p class="pl-4 mt-4">Review by <%= review.reviewer&.username %></p>
                       </div>
-                      <p class="pl-4">"<%= review.content %>"</p><br>
+                      <% t = Time.now() %>
+                      <p class="pl-4 mb-0">"<%= review.content %>"</p><br>
+                      <p class="text-secondary ml-2"><%= t.strftime("Posted on %m/%d/%y") %></p>
                       </span>
                     <% end %>
                   </ul>
@@ -74,8 +82,7 @@
   <button class="tablinks" onclick="profileTabs(event, 'myrentals')">My Rentals</button>
 </div>
 
-<%# Do the <button disabled class = "active-p"> etc need to remain or can it be replaced with <p> index card code> %>
-<div id="mylistedgames" class="tabcontent">
+<div id="mylistedgames" class="tabcontent active">
   <div class="container">
     <div class="card-deck">
       <% @offers_for_user.each do |offer| %>
@@ -236,7 +243,7 @@
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body no-padding">
                                   <%= simple_form_for [ rental.offer.user, @review ] do |f| %>
                                     <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
                                     <%= f.input :content %>
@@ -268,7 +275,6 @@
                         <p class="card-text text-secondary">(Waiting approval by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
                         <%= rental.status %>
                     <% end %>
-                  <%# - How about adding a 'History' header and moving the rentals there? %>
               </div>
             </div>
           </div>
@@ -277,17 +283,6 @@
     </div>
   </div>
 
-  <h3> (DEBUGGING) - Shows all reviews </h3>
-  <ul class="list-group">
-    <% Review.all.each do |review| %>
-      <li style="color: Gold;" class="starz"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></li>
-      <li><%= review.content %></li>
-      <li>Review by <%= review.reviewer&.username %></li>
-    <% end %>
-  </ul>
-</div>
-
-<%# To Do: Get turbolinks working %>
 <script>
 function profileTabs(evt, tabName) {
   var i, tabcontent, tablinks;

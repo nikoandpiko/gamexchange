@@ -27,7 +27,7 @@
 </div>
 <div class="container">
   <div class="card-deck">
-    <% @offers.each do |offer| %>
+    <% @indexed_offers.each do |offer| %>
       <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
         <div class="card card-index p-0 my-3">
           <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">

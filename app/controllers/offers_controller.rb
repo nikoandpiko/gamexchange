@@ -3,9 +3,26 @@ class OffersController < ApplicationController
 
   def index
     if params[:query].present?
+      
       @offers = policy_scope(Offer.search_by_title(params[:query]))
+      @offer_dup_checker = []
+      @indexed_offers = []
+      @offers.each do |offer|
+        if !@offer_dup_checker.include?([offer.game.title, offer.platform])
+          @offer_dup_checker << [offer.game.title, offer.platform]
+          @indexed_offers << offer
+        end
+      end
     else
       @offers = policy_scope(Offer)
+      @offer_dup_checker = []
+      @indexed_offers = []
+      @offers.each do |offer|
+        if !@offer_dup_checker.include?([offer.game.title, offer.platform])
+          @offer_dup_checker << [offer.game.title, offer.platform]
+          @indexed_offers << offer
+        end
+      end
     end
   end
 

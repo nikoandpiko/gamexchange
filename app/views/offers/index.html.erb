@@ -10,7 +10,7 @@
           <%= text_field_tag :query,
     params[:query], class: "form-control", placeholder: "Find a game" %> <% end %>
         <div class="input-group-append">
-          <button class="btn btn-dark" type="submit">Search</button>
+          <button class="btn btn-dark btn-index" type="submit">Search</button>
         </div>
       </div>
       <div class="input-group mb-3">
@@ -18,7 +18,7 @@
           <%= text_field_tag :query,
     params[:query], class: "form-control", placeholder: "Find a game" %>
           <div class="input-group-append">
-            <%= submit_tag "Search", class: "btn btn-primary" %>
+            <%= submit_tag "Search", class: "btn btn-dark btn-index" %>
           <% end %>
         </div>
       </div>

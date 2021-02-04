@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import { multipleSelect } from "../components/select2";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -35,6 +36,7 @@ document.addEventListener('turbolinks:load', () => {
   initStarRating();
   // profileTabs();
   // initUpdateNavbarOnScroll();
+  multipleSelect();
 });
 
 console.log("Hope you're having a great day today.");

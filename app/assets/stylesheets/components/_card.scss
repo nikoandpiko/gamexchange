@@ -62,6 +62,27 @@
   border-color: #673bb7;
 }
 
+.button-add-game {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    background-color: $danger;
+    border-color: $danger;
+}
+
+.button-add-game:hover {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    background-color:  rgb(238, 61, 64)
+    ;
+    border-color: rgb(238, 61, 64)
+    ;
+}
+  
+
 .button-index a {
   color: white;
 }

@@ -16,6 +16,17 @@
     position: relative;
 }
 
+.card-body-show a {
+    text-decoration: none;
+    color: black;
+}
+
+.card-body-show a:hover {
+    text-decoration: none;
+    color: black;
+    opacity: 60%;
+}
+
 .card-row-show h4 {
     color: black;
     position: absolute;

@@ -4,7 +4,7 @@
       <%# <%= image_tag "2b_default_avatar", class: "avatar-large" THANKS HEROKU! %>
       <img src="https://avatarfiles.alphacoders.com/163/163785.jpg" alt="2B" class="avatar-large">
         <div class="ml-2">
-          <h3><%= @user.username %>'s</h3>
+          <h4><%= @user.username %>'s</h4>
           <h1>DASHBOARD</h1>
           <button type="button" class="btn" data-toggle="modal" data-target="#starsModal">
             <h3 class="stars">
@@ -294,7 +294,7 @@
       <% end %>
     </div>
   </div>
-      
+
 <script>
   function profileTabs(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -309,7 +309,7 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
-  
+
   const att = document.createAttribute("value");
   const platformInput = document.getElementById("offer_platform");
   platformInput.setAttributeNode(att);
@@ -323,7 +323,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Playstation 4";
   }
-  
+
   function xboxtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");
@@ -334,7 +334,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Xbox One";
   }
-  
+
   function switchtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");

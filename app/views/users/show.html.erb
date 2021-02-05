@@ -6,7 +6,7 @@
       <div class="ml-2">
         <h4><%= @user.username %>'s</h4>
         <h1>DASHBOARD</h1>
-        <button type="button" class="btn" data-toggle="modal" data-target="#starsModal">
+        <button type="button" class="btn pl-1 mt-1" data-toggle="modal" data-target="#starsModal">
           <h3 class="stars">
             <i class="fas fa-star active"></i>
             <i class="fas fa-star active"></i>
@@ -26,8 +26,9 @@
               </div>
               <div class="modal-body no-padding">
                 <ul class="list-group">
+                <%# Fix this %>
                   <% Review.all.each do |review| %>
-                    <span class="border mt-3">
+                    <span class="border mt-3 shadow p-2 mb-4 bg-white rounded">
                       <div class="row">
                         <p style="color: Gold;" class="starz pl-4 mt-4"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></p>
                         <p class="pl-4 mt-4">Review by <%= review.reviewer&.username %></p>
@@ -40,8 +41,8 @@
                   <% end %>
                 </ul>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <div class="modal-footer p-0">
+                <button type="button" class="btn btn-dark btn-lg btn-block m-0" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
@@ -245,12 +246,12 @@
                         </div>
                         <div class="modal-body no-padding">
                           <%= simple_form_for [ rental.offer.user, @review ] do |f| %>
-                            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
-                            <%= f.input :content %>
+                            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience with this user" %>
+                            <%= f.input :content, placeholder: "Let me borrow the game for a long time and exchange was simple!" %>
                             <%= hidden_field_tag :rental_id, rental.id %>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-                              <%= f.submit "Return and Review", class: "btn btn-primary" %>
+                            <div class="modal-footer p-0">
+                              <%= f.submit "Return and Review", class: "btn btn-dark btn-lg btn-block m-0 mb-2" %>
+                              <button type="button" class="btn btn-secondary btn-lg btn-block m-0" data-dismiss="modal">Go Back</button>
                             </div>
                           <% end %>
                         </div>
@@ -297,7 +298,7 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
-  
+
   const att = document.createAttribute("value");
   const platformInput = document.getElementById("offer_platform");
   platformInput.setAttributeNode(att);
@@ -311,7 +312,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Playstation 4";
   }
-  
+
   function xboxtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");
@@ -322,7 +323,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Xbox One";
   }
-  
+
   function switchtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");

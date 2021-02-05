@@ -85,7 +85,7 @@
   <div class="container">
     <div class="card-deck">
       <% @offers_for_user.each do |offer| %>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">
             <div class="pt-0 px-0">
@@ -125,7 +125,7 @@
   <div class="container">
     <div class="card-deck">
       <% @user.rentals_as_owner.each do |rental| %>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">
@@ -199,7 +199,7 @@
   <div class="container">
     <div class="card-deck">
       <% @rentals.each do |rental| %>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">
@@ -284,6 +284,10 @@
   </div>
 </div>
 <script>
+  AOS.init({
+  duration: 600,
+});
+
   function profileTabs(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -297,7 +301,7 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
-  
+
   const att = document.createAttribute("value");
   const platformInput = document.getElementById("offer_platform");
   platformInput.setAttributeNode(att);
@@ -311,7 +315,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Playstation 4";
   }
-  
+
   function xboxtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");
@@ -322,7 +326,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Xbox One";
   }
-  
+
   function switchtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");

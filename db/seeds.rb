@@ -74,73 +74,85 @@ puts "Creating users"
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "1@1.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "2@2.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "3@3.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "4@4.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "5@5.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "6@6.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "7@7.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "8@8.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "9@9.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "10@10.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "11@11.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 User.create(
 username: Faker::Games::Witcher.monster,
 email: "12@12.com",
-password: "123456"
+password: "123456",
+avatar: Faker::Avatar.image
 )
 
 users_for_seed = User.all 

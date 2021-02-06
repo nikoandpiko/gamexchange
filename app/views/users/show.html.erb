@@ -86,7 +86,7 @@
   <div class="container">
     <div class="card-deck">
       <% @offers_for_user.each do |offer| %>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>" class="card-index-image">
             <div class="pt-0 px-0">
@@ -127,7 +127,7 @@
     <div class="card-deck">
       <% @user.rentals_as_owner.each do |rental| %>
         <% unless rental.status == 'Declined' %>
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
             <div class="card card-offer-profile p-0 my-3">
               <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
               <div class="pt-0 px-0">
@@ -194,7 +194,7 @@
   <div class="container">
     <div class="card-deck">
       <% @rentals.each do |rental| %>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
           <div class="card card-offer-profile p-0 my-3">
             <img src="<%= rental.offer.game.image %>" alt="<%= rental.offer.game.image %>" class="card-index-image">
             <div class="pt-0 px-0">

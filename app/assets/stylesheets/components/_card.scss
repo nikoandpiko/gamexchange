@@ -81,13 +81,23 @@
   border-color: #673bb7;
 }
 
+.button-my-rentals {
+  border-radius: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0px;
+  background-color: #DF0024;
+  border-color: #DF0024;
+}
+
+
 .button-add-game {
     border-radius: 0px;
     margin-bottom: 0px;
     position: absolute;
     bottom: 0px;
-    background-color: $danger;
-    border-color: $danger;
+    background-color: #DF0024;
+    border-color: #DF0024;
 }
 
 .button-add-game:hover {
@@ -127,8 +137,6 @@
 }
 
 .status-text {
-  margin-left: -20px;
-  margin-right: -20px;
   color: white;
   font-size: 1.25rem;
   text-align: center;
@@ -146,13 +154,49 @@
   background-color: #DF0024;
 }
 
+.x-button {
+  color: white;
+  background-color: #DF0024;
+  border-color: #DF0024;
+  height: 3.1em;
+  border-radius: 0;
+}
+
+.check-button {
+  color: white;
+  background-color: #673ab7;
+  border-color: #673bb7;
+  height: 3.1em;
+  border-radius: 0;
+}
+
 .returned {
   background-color: #15AC9F;
 }
 
-.owner-name {
+.returned-user, .returned-user :link, .returned-user :visited, .returned-user :hover {
+  background-color: #127c74;
+  text-decoration: none;
+  color: white;
+}
+
+.pending-user, .pending-user :link, .pending-user :visited, .pending-user :hover {
+  background-color: #c99f08;
+  text-decoration: none;
+  color: white;
+}
+
+.owner-name, .owner-name :link, .owner-name :visited, .owner-name :hover {
   background-color: #A6162C;
+  text-decoration: none;
+  color: white;
   margin-bottom: 2.4em;
+}
+
+.rentee-name, .rentee-name :link, .rentee-name :visited, .rentee-name :hover {
+  background-color: #A6162C;
+  text-decoration: none;
+  color: white;
 }
 
 .listed-games {

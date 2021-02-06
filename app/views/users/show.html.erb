@@ -26,7 +26,7 @@
               </div>
               <div class="modal-body no-padding">
                 <ul class="list-group">
-                <%# Fix this %>
+                  <%# Fix this %>
                   <% Review.all.each do |review| %>
                     <span class="border mt-3 shadow p-2 mb-4 bg-white rounded">
                       <div class="row">
@@ -152,31 +152,37 @@
                     <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
                   </div>
                 <% end %>
-                <div class="card-body pt-0 card-flex-column">
-                  <div>
+                <div class="card-body p-0 card-flex-column">
+                  <div class="flex-grow-1 pb-3 px-3">
                     <h5 class="card-title"><%= rental.offer.game.title %></h5>
                     <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
                   </div>
                   <% if rental.status == 'Accepted' %>
-                    <p class="card-text text-secondary">(Rented out to <%= link_to rental.user.username, rental.user %> on <%= Date.today %>)</p>
-                    <p class="status-text declined">RENTED OUT</p>
+                    <div>
+                      <p class="status-text rentee-name"><%= link_to rental.user.username, rental.user %></p>
+                      <p class="status-text declined">RENTED OUT</p>
+                    </div>
                   <% elsif rental.status == 'Returned'%>
-                    <p class="card-text text-secondary">
-                      (Was rented out to <%= link_to rental.user.username, rental.user %> on <%= Date.today %>)
-                    </p>
+                    <p class="status-text returned-user"><%= link_to rental.user.username, rental.user %></p>
                     <%# Have RETURNED status games automatically go back to 'My Listed Games'? %>
                     <p class="status-text returned">RETURNED</p>
                   <% elsif rental.status == 'Pending' %>
-                    <p class="card-text text-secondary">(<%= link_to rental.user.username, rental.user %> wants to rent out your game)</p>
-                    <div class="d-flex justify-content-center">
-                      <%= simple_form_for (rental), html: { class: "btn-block"} do |f| %>
-                        <%= f.submit "Accept", class: "btn btn-success w-20", data: { confirm: 'Are you sure?' } %>
-                        <%= f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
-                      <% end %>
-                      <%= simple_form_for (rental) do |f| %>
-                        <%= f.submit "Decline", class: "btn btn-danger w-20", data: { confirm: 'Are you sure?' } %>
-                        <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
-                      <% end %>
+                    <div>
+                      <p class="status-text rentee-name"><%= link_to rental.user.username, rental.user %></p>
+                      <div class="d-flex justify-content-center">
+                        <%= simple_form_for (rental), html: { class: "w-50"} do |f| %>
+                          <%= button_tag type: :submit, class: "btn check-button w-100" do %>
+                            <i class="fas fa-check"></i>
+                          <% end %>
+                          <%= f.input :status, wrapper_html: { class: "m-0 "}, input_html: { value: 'Accepted', class: "w-100" }, as: :hidden %>
+                        <% end %>
+                        <%= simple_form_for (rental), html: { class: "w-50"} do |f| %>
+                          <%= button_tag type: :submit, class: "btn x-button w-100" do %>
+                            <i class="fas fa-times"></i>
+                          <% end %>
+                          <%= f.input :status, wrapper_html: { class: "m-0 "}, input_html: { value: 'Declined', class: "m-0 w-100" }, as: :hidden %>
+                        <% end %>
+                      </div>
                     </div>
                   <% elsif rental.status == 'Declined' %>
                     <p class="status-text declined">DECLINED</p>
@@ -219,14 +225,16 @@
                   <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
                 </div>
               <% end %>
-              <div class="card-body pt-0 card-flex-column">
-                <h5 class="card-title"><%= rental.offer.game.title %></h5>
-                <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
+              <div class="card-body p-0 card-flex-column">
+                <div class="flex-grow-1 pb-3 px-3">
+                  <h5 class="card-title"><%= rental.offer.game.title %></h5>
+                  <p class="card-text text-secondary"><%= rental.offer.game.genre %></p>
+                </div>
                 <% if rental.status == 'Accepted' %>
                   <div>
-                    <p class="status-text owner-name"><%= rental.offer.user.username %></p>
+                    <p class="status-text owner-name"><%= link_to rental.offer.user.username, rental.offer.user %></p>
                     <div class="d-flex justify-content-center">
-                      <button type="button" class="btn btn-dark button-text button-index btn-lg btn-block" data-toggle="modal" data-target="#reviewModal-<%= rental.id %>">
+                      <button type="button" class="btn btn-dark button-text button-add-game btn-lg btn-block" data-toggle="modal" data-target="#reviewModal-<%= rental.id %>">
                         Return
                       </button>
                     </div>
@@ -255,22 +263,22 @@
                     </div>
                   </div>
                 <% elsif rental.status == 'Declined' %>
-                  <p class="card-text text-secondary">(Declined by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                  <p class="status-text rentee-name"><%= link_to rental.offer.user.username, rental.offer.user %></p>
                   <p class="status-text declined">DECLINED</p>
                 <% elsif rental.status == 'Returned' %>
-                  <p class="card-text text-secondary">(Returned on <%= Date.today %>  </p>
+                  <p class="status-text returned-user"><%= Date.today %></p>
                   <!-- Adding return date? -->
                   <p class="status-text returned">RETURNED</p>
                 <% elsif rental.status == 'Request' %>
-                  <p class="card-text text-secondary">(Immediate return request by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                  <p class="card-text text-secondary">Immediate return request by <%= link_to rental.offer.user.username, rental.offer.user %></p>
                   <%= simple_form_for (rental) do |f| %>
                     <div class="d-flex justify-content-center">
-                      <%= f.submit "Return it NOW", class: "btn btn-danger return-button flex-grow-1", data: { confirm: 'Are you sure?' }  %>
+                      <%= f.submit "Return it NOW", class: "btn btn-danger return-button flex-grow-1" %>
                     </div>
                     <%= f.input :status, input_html: { value: "Returned #{Date.today}" }, as: :hidden %>
                   <% end %>
                 <% else %>
-                  <p class="card-text text-secondary">(Waiting approval by <%= link_to rental.offer.user.username, rental.offer.user %>)</p>
+                  <p class="status-text pending-user"><%= link_to rental.offer.user.username, rental.offer.user %></p>
                   <p class="status-text pending">PENDING</p>
                 <% end %>
               </div>
@@ -284,8 +292,8 @@
 <script>
   AOS.init({
   duration: 600,
-});
-
+  });
+  
   function profileTabs(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -299,7 +307,7 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
-
+  
   const att = document.createAttribute("value");
   const platformInput = document.getElementById("offer_platform");
   platformInput.setAttributeNode(att);
@@ -313,7 +321,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Playstation 4";
   }
-
+  
   function xboxtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");
@@ -324,7 +332,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Xbox One";
   }
-
+  
   function switchtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");

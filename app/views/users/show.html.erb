@@ -27,7 +27,7 @@
               <div class="modal-body no-padding">
                 <ul class="list-group">
                   <%# Fix this %>
-                  <% Review.all.each do |review| %>
+                  <% @reviews.each do |review| %>
                     <span class="border mt-3 shadow p-2 mb-4 bg-white rounded">
                       <div class="row">
                         <p style="color: Gold;" class="starz pl-4 mt-4"><%  review.rating.times do %><i class="fas fa-star"></i><% end %><% (5 - review.rating).times do %><i class="far fa-star"></i><% end %></p>
@@ -293,7 +293,7 @@
   AOS.init({
   duration: 600,
   });
-  
+
   function profileTabs(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -307,7 +307,7 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
-  
+
   const att = document.createAttribute("value");
   const platformInput = document.getElementById("offer_platform");
   platformInput.setAttributeNode(att);
@@ -321,7 +321,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Playstation 4";
   }
-  
+
   function xboxtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");
@@ -332,7 +332,7 @@
     switchButton.classList.remove("active");
     platformInput.value = "Xbox One";
   }
-  
+
   function switchtoggler() {
     const platformInput = document.getElementById("offer_platform");
     const switchButton = document.querySelector(".switch-button");

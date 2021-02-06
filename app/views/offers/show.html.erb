@@ -1,73 +1,78 @@
 <div class="banner-offer-show">
-  <div class="container text-center container-show">
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        <img src="<%=@offer.game.image%>" alt="" class="game-cover-show">
-      </div>
-      <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 text-left banner-text-show">
-        <h4>  <%=@offer.game.genre%></h4>
-        <h1><%=@offer.game.title%></h1>
-      </div>
-    </div>
-    <div class="row justify-content-end card-row-show">
-      <h4 class="btn-lg">Available from these users</h4>
-      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-      </div>
-      <% @offers_for_game.each do |offer| %>
-        <% @user_ids_for_rentals = [] %>
-        <% offer.rentals.each do |rental| %>
-          <% @user_ids_for_rentals << rental.user_id %>
-        <% end %>
-        <% if !@user_ids_for_rentals.include?(current_user.id) %>
-          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-            <div class="card card-show p-0 my-3">
-              <%= image_tag(offer.user.avatar, class: "avatar-show")%>
-              <div class="pt-0 px-0">
-                <% if offer.platform == "Playstation 4"%>
-                  <div class="d-flex justify-content-around">
-                    <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
-                  </div>
-                <% end %>
-                <% if offer.platform == "Nintendo Switch"%>
-                  <div class="d-flex justify-content-around">
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
-                  </div>
-                <% end %>
-                <% if offer.platform == "Xbox One"%>
-                  <div class="d-flex justify-content-around">
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
-                    <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
-                  </div>
-                <% end %>
-                <div class="card-body-show pt-0">
-                  <h5 class="card-title text-center"><%= link_to offer.user.username, user_path(offer.user) %></h5>
-                  <div class="stars d-flex justify-content-center">
-                    <% @star = [3,4,5].sample %>
-                    <% if @star == 3 %>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star disabled"></i>
-                      <i class="fas fa-star disabled"></i>
-                    <% elsif @star == 4 %>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star disabled"></i>
-                    <% else %>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                      <i class="fas fa-star active mr-2"></i>
-                    <% end %>
-                  </div>
+   <div class="container text-center container-show">
+     <div class="row">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+           <img src="<%=@offer.game.image%>" alt="" class="game-cover-show">
+       </div>
+       <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 text-left banner-text-show">
+           <h4>  <%=@offer.game.genre%></h4>
+           <h1><%=@offer.game.title%></h1>
+       </div>
+     </div>
+      <div class="row justify-content-end card-row-show">
+      <h4>Available from: </h4>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+        </div>  
+          <% @offers_for_game.each do |offer| %>
+            <% @user_ids_for_rentals = [] %>
+              <% offer.rentals.each do |rental| %>
+                  <% @user_ids_for_rentals << rental.user_id %>
+              <% end %>
+                  <% if !@user_ids_for_rentals.include?(current_user.id) %>                   
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+                      <div class="card card-show p-0 my-3">
+                        <%= image_tag(offer.user.avatar, class: "avatar-show")%>
+                        <div class="pt-0 px-0">
+                          <% if offer.platform == "Playstation 4"%>
+                            <div class="d-flex justify-content-around">
+                              <p class="flex-grow-1 p-2 progress-bar bg-blue"><i class="fab fa-playstation"></i></p>
+                              <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                              <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
+                            </div>
+                          <% end %>
+                          <% if offer.platform == "Nintendo Switch"%>
+                            <div class="d-flex justify-content-around">
+                              <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                              <p class="flex-grow-1 p-2 progress-bar bg-danger width: 30%"><i class="fas fa-toggle-on"></i></p>
+                              <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fab fa-xbox"></i></p>
+                            </div>
+                          <% end %>
+                          <% if offer.platform == "Xbox One"%>
+                            <div class="d-flex justify-content-around">
+                              <p class="flex-grow-1 p-2 progress-bar bg-secondary"><i class="fab fa-playstation"></i></p>
+                              <p class="flex-grow-1 p-2 progress-bar bg-secondary width: 30%"><i class="fas fa-toggle-on"></i></p>
+                              <p class="flex-grow-1 p-2 progress-bar bg-success width: 30%"><i class="fab fa-xbox"></i></p>
+                            </div>
+                          <% end %>
+                          <div class="card-body-show pt-0">
+                            <h5 class="card-title text-center"><%= link_to offer.user.username, user_path(offer.user) %></h5>
+                            <div class="stars d-flex justify-content-center">
+                            <% @star = [3,4,5].sample %>
+                            <% if @star == 3 %>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star disabled mr-2"></i>
+                              <i class="fas fa-star disabled"></i>
+                            <% elsif @star == 4 %>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star disabled"></i>
+                            <% else %>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                              <i class="fas fa-star active mr-2"></i>
+                            <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <%= simple_form_for [offer, Rental.new] do |f| %>
+                            <%= f.submit "RENT", class: "btn btn-dark button-text button-index btn-lg btn-block rent-button" %>
+                        <% end %>   
                 </div>
               </div>
               <%= simple_form_for [offer, Rental.new] do |f| %>

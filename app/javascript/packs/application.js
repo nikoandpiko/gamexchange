@@ -26,18 +26,18 @@ require('select2')
 // External imports
 import "bootstrap";
 import { multipleSelect } from "../components/select2";
-import { profileTabs } from "../components/tabs";
-import { initStarRating } from '../plugins/init_star_rating';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+// import { profileTabs } from "../components/tabs";
 // import { initUpdateNavbarOnScroll } from "../components/navbar";
+import { initStarRating } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
   initStarRating();
-  profileTabs();
-  multipleSelect();
+  // profileTabs();
   // initUpdateNavbarOnScroll();
+  multipleSelect();
 });
 
 console.log("Hope you're having a great day today.");

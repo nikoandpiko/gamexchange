@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     @rentals = @user.rentals
     @offers_for_user = @user.offers
     @review = Review.new
-    @reviews = current_user.reviews
   end
 
   private
@@ -20,5 +19,5 @@ class UsersController < ApplicationController
   def offer_params
     params.require(:user).permit(:user_id)
   end
-
+    
 end

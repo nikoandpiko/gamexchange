@@ -20,7 +20,7 @@ class RentalsController < ApplicationController
     )
     authorize @rental
     if @rental.save
-      redirect_to user_path(current_user), notice: "Game added to 'My Rentals'! Please wait for approval by owner"
+      redirect_to user_path(current_user, tab: "myrentals"), notice: "Game added to 'My Rentals'! Please wait for approval by owner"
     else
       render :new, notice: 'Try again'
     end
@@ -29,7 +29,7 @@ class RentalsController < ApplicationController
   def update
     authorize @rental
     @rental.update(rental_params)
-    redirect_to user_path(current_user), notice: "Status updated!"
+    redirect_to user_path(current_user, tab: "rentedout"), notice: "Status updated!"
   end
 
   private

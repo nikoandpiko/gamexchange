@@ -2,13 +2,18 @@
   overflow: hidden;
   background-color: #673ab7;
   color: white;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: stretch;
+  margin: 0 !important;
+  padding-inline-start: 0 !important;
 }
 
 /* Style the buttons that are used to open the tab content */
-.tab button {
+.tab a {
+  text-align: center;
   background-color: inherit;
+  flex-grow: 1;
   float: left;
   border: none;
   outline: none;
@@ -20,14 +25,14 @@
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
+.tab a:hover {
   background-color: #673ab7;
   color: white;
   border-bottom: solid 8px #30155f;
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tab a.active {
   background-color: #673ab7;
   color: white;
   border-bottom: solid 8px #30155f;

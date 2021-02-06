@@ -3,7 +3,7 @@ class OffersController < ApplicationController
 
   def index
     if params[:query].present?
-      
+
       @offers = policy_scope(Offer.search_by_title(params[:query]))
       @offer_dup_checker = []
       @indexed_offers = []
@@ -39,7 +39,7 @@ class OffersController < ApplicationController
   end
 
   def create
-    offer_params[:game_id] == "" ? offer_params[:game_id] = nil : 
+    offer_params[:game_id] == "" ? offer_params[:game_id] = nil :
 
     @game = Game.find(offer_params[:game_id])
     @offer = Offer.new(
@@ -50,7 +50,7 @@ class OffersController < ApplicationController
     authorize @offer
 
     if @offer.save
-      redirect_to user_path(current_user), notice: "Game added to 'My Listed Games'!"
+      redirect_to user_path(current_user, tab: "mylistedgames"), notice: "Game added to 'My Listed Games'!"
     else
       redirect_to user_path(current_user), notice: "Please choose a platform and a game"
     end

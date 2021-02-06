@@ -28,20 +28,26 @@
 }
 
 .card-row-show h4 {
-    color: black;
     position: absolute;
-    top: -60px;
+    top: -172px;
     left: 360px;
+    background-color: #673ab7;
+    border-color: #673bb7;
+    color: white;
+    border-radius: 0px;
 }
 
 .banner-text-show h4 {
     color: white;
     margin-top: 100px;
+    margin-left: -34px;
     text-shadow: 0px 0px 5px rgba(0,0,0,0.4);
 }
 
 .banner-text-show h1 {
     color: white;
+    font-weight: bold;
+    margin-left: -34px;
     text-shadow: 0px 0px 5px rgba(0,0,0,0.4);
 }
 
@@ -81,6 +87,33 @@
   border-color: #673bb7;
 }
 
+.button-front {
+  border-radius: 0px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  bottom: 0px;
+  background-color: #673ab7;
+  border-color: #673bb7;
+  color: white;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.profile-front {
+  border-radius: 0px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  bottom: 0px;
+  background-color: #673ab7;
+  border-color: #673bb7;
+  color: white;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
 .button-add-game {
     border-radius: 0px;
     margin-bottom: 0px;

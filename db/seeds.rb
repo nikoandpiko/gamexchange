@@ -155,10 +155,97 @@ password: "123456",
 avatar: Faker::Avatar.image
 )
 
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "13@13.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "14@14.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "15@15.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "16@16.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "17@17.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "18@18.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "19@19.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "20@20.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "21@21.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "22@22.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "23@23.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "24@24.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+
 users_for_seed = User.all 
 games_for_seed = Game.all
 
-200.times do
+500.times do
     game = games_for_seed.sample
     user = users_for_seed.sample
     if game.platforms.include?("130") && !game.platforms.include?("49") && !game.platforms.include?("48")

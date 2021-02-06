@@ -10,10 +10,13 @@
   position: relative;
   height: 400px;
   width: 260px;
+  
 }
 
 .card-row-show {
     position: relative;
+    top: -100px;
+    left: 66px;
 }
 
 .card-body-show a {
@@ -29,8 +32,8 @@
 
 .card-row-show h4 {
     position: absolute;
-    top: -172px;
-    left: 360px;
+    top: -74px;
+    left: 300px;
     background-color: #673ab7;
     border-color: #673bb7;
     color: white;

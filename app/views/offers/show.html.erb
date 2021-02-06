@@ -1,4 +1,4 @@
-<div class="banner-offer-show">
+<div class="banner-offer-show" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.6)), url(<%= @offer.game.screenshot %>);">
    <div class="container text-center container-show">
      <div class="row">
        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -10,7 +10,7 @@
        </div>
      </div>
       <div class="row justify-content-end card-row-show">
-      <h4>Available from: </h4>
+      <h4 class="btn-lg ">Available from these users </h4>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
         </div>  
           <% @offers_for_game.each do |offer| %>
@@ -52,7 +52,7 @@
                               <i class="fas fa-star active mr-2"></i>
                               <i class="fas fa-star active mr-2"></i>
                               <i class="fas fa-star active mr-2"></i>
-                              <i class="fas fa-star disabled"></i>
+                              <i class="fas fa-star disabled mr-2"></i>
                               <i class="fas fa-star disabled"></i>
                             <% elsif @star == 4 %>
                               <i class="fas fa-star active mr-2"></i>
@@ -70,34 +70,18 @@
                             </div>
                           </div>
                         </div>
-                        <%= simple_form_for [offer, Rental.new] do |f| %>
-                            <%= f.submit "RENT", class: "btn btn-dark button-text button-index btn-lg btn-block rent-button" %>
-                        <% end %>   
-                </div>
-              </div>                       
-          <% end %>
+          
+              <%= simple_form_for [offer, Rental.new] do |f| %>
+                <%= f.submit "RENT", class: "btn btn-dark button-text button-index btn-lg btn-block rent-button" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
+<!--
 
 <div class="banner-show">
    <div class="container text-center container-show">

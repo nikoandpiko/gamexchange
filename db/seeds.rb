@@ -19,7 +19,7 @@ require 'net/https'
 http1 = Net::HTTP.new('api.igdb.com', 443)
 http1.use_ssl = true
 request1 = Net::HTTP::Post.new(URI('https://api.igdb.com/v4/games'), {'Client-ID' => '9nu16mxtee9islxz909mkmudl8minu', 'Authorization' => 'Bearer sgbs6fxnj0thm1op0dzog9n5if0ygx'})
-request1.body = 'fields artworks,cover.*,category,genres.name,name,rating, platforms; where platforms = (48,49,130) & rating > 80; limit 500;'
+request1.body = 'fields artworks,cover.*,category,screenshots.*, genres.name,name,rating, platforms; where platforms = (48,49,130) & rating > 80; limit 500;'
 
 hash_as_string1 = http1.request(request1).body
 games_data_array = eval(hash_as_string1)
@@ -39,7 +39,7 @@ puts "Seeding games"
 
 
 games_data_array.each do |game|
-    if game[:cover].nil? || game[:platforms].nil? || game[:genres].nil? || game[:name].nil? || game[:cover][:url].nil?
+    if game[:cover].nil? || game[:platforms].nil? || game[:genres].nil? || game[:name].nil? || game[:cover][:url].nil? || game[:screenshots].nil?
         puts "passed"
     else
         puts "saved"
@@ -47,10 +47,15 @@ games_data_array.each do |game|
         game_image_small = game[:cover][:url]
         game_platforms = game[:platforms]
         game_name = game[:name]
+        game_screenshot_small = game[:screenshots][0][:url]
 
         game_image_small = game_image_small.split("/")
         game_image_small[6] = "t_cover_big"
         game_image = game_image_small.join("/")
+
+        game_screenshot_small = game_screenshot_small.split("/")
+        game_screenshot_small[6] = "t_screenshot_huge"
+        game_screenshot = game_screenshot_small.join("/")
         
 
 
@@ -58,7 +63,8 @@ games_data_array.each do |game|
             title: game_name,
             genre: game_genre,
             image: game_image,
-            platforms: game_platforms
+            platforms: game_platforms,
+            screenshot: game_screenshot
         )
     end
 end
@@ -155,10 +161,97 @@ password: "123456",
 avatar: Faker::Avatar.image
 )
 
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "13@13.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "14@14.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "15@15.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "16@16.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "17@17.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "18@18.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "19@19.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "20@20.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "21@21.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "22@22.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "23@23.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+User.create(
+username: Faker::Games::Witcher.monster,
+email: "24@24.com",
+password: "123456",
+avatar: Faker::Avatar.image
+)
+
+
 users_for_seed = User.all 
 games_for_seed = Game.all
 
-200.times do
+500.times do
     game = games_for_seed.sample
     user = users_for_seed.sample
     if game.platforms.include?("130") && !game.platforms.include?("49") && !game.platforms.include?("48")

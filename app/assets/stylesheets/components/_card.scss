@@ -10,10 +10,13 @@
   position: relative;
   height: 400px;
   width: 260px;
+  
 }
 
 .card-row-show {
     position: relative;
+    top: -100px;
+    left: 66px;
 }
 
 .card-body-show a {
@@ -28,20 +31,26 @@
 }
 
 .card-row-show h4 {
-    color: black;
     position: absolute;
-    top: -60px;
-    left: 360px;
+    top: -74px;
+    left: 300px;
+    background-color: #673ab7;
+    border-color: #673bb7;
+    color: white;
+    border-radius: 0px;
 }
 
 .banner-text-show h4 {
     color: white;
     margin-top: 100px;
+    margin-left: -34px;
     text-shadow: 0px 0px 5px rgba(0,0,0,0.4);
 }
 
 .banner-text-show h1 {
     color: white;
+    font-weight: bold;
+    margin-left: -34px;
     text-shadow: 0px 0px 5px rgba(0,0,0,0.4);
 }
 
@@ -81,13 +90,41 @@
   border-color: #673bb7;
 }
 
+.button-front {
+  border-radius: 0px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  bottom: 0px;
+  background-color: #673ab7;
+  border-color: #673bb7;
+  color: white;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.profile-front {
+  border-radius: 0px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  bottom: 0px;
+  background-color: #673ab7;
+  border-color: #673bb7;
+  color: white;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .button-add-game {
     border-radius: 0px;
     margin-bottom: 0px;
     position: absolute;
     bottom: 0px;
-    background-color: $danger;
-    border-color: $danger;
+    background-color: #DF0024;
+    border-color: #DF0024;
 }
 
 .button-add-game:hover {
@@ -127,8 +164,6 @@
 }
 
 .status-text {
-  margin-left: -20px;
-  margin-right: -20px;
   color: white;
   font-size: 1.25rem;
   text-align: center;
@@ -146,13 +181,49 @@
   background-color: #DF0024;
 }
 
+.x-button {
+  color: white;
+  background-color: #DF0024;
+  border-color: #DF0024;
+  height: 3.1em;
+  border-radius: 0;
+}
+
+.check-button {
+  color: white;
+  background-color: #673ab7;
+  border-color: #673bb7;
+  height: 3.1em;
+  border-radius: 0;
+}
+
 .returned {
   background-color: #15AC9F;
 }
 
-.owner-name {
+.returned-user, .returned-user :link, .returned-user :visited, .returned-user :hover {
+  background-color: #127c74;
+  text-decoration: none;
+  color: white;
+}
+
+.pending-user, .pending-user :link, .pending-user :visited, .pending-user :hover {
+  background-color: #c99f08;
+  text-decoration: none;
+  color: white;
+}
+
+.owner-name, .owner-name :link, .owner-name :visited, .owner-name :hover {
   background-color: #A6162C;
+  text-decoration: none;
+  color: white;
   margin-bottom: 2.4em;
+}
+
+.rentee-name, .rentee-name :link, .rentee-name :visited, .rentee-name :hover {
+  background-color: #A6162C;
+  text-decoration: none;
+  color: white;
 }
 
 .listed-games {

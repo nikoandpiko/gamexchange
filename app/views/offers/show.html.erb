@@ -74,30 +74,18 @@
                             <%= f.submit "RENT", class: "btn btn-dark button-text button-index btn-lg btn-block rent-button" %>
                         <% end %>   
                 </div>
-              </div>                       
-          <% end %>
+              </div>
+              <%= simple_form_for [offer, Rental.new] do |f| %>
+                <%= f.submit "RENT", class: "btn btn-dark button-text button-index btn-lg btn-block rent-button" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
+<!--
 
 <div class="banner-show">
    <div class="container text-center container-show">

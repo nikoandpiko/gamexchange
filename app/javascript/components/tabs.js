@@ -13,3 +13,19 @@
 // }
 
 // export { profileTabs };
+
+const profileTabs = () => {
+  // document.querySelectorAll('#nav-tab a').forEach((link) => {
+  //   link.addEventListener("click", (e) => {
+  //     e.preventDefault()
+  //     link.classList.remove("active")
+  //   })
+  // })
+  $('#nav-tab a').on('click', function (e) {
+  e.preventDefault()
+  $('#nav-tab a').removeClass("active hilite")
+  $(this).tab('show')
+})
+}
+
+export { profileTabs };

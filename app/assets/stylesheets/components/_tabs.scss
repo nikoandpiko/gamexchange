@@ -2,8 +2,11 @@
   overflow: hidden;
   background-color: #673ab7;
   color: white;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: stretch;
+  margin: 0 !important;
+  padding-inline-start: 0 !important;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -19,11 +22,37 @@
   color: #8c69cc;
 }
 
+.tab a {
+  background-color: inherit;
+  flex-grow: 1;
+  text-align: center;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  border-bottom: solid 8px #8c69cc;
+  color: #8c69cc;
+}
+
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: #673ab7;
   color: white;
   border-bottom: solid 8px #30155f;
+}
+
+.tab a:hover {
+  background-color: #673ab7;
+  color: white;
+  border-bottom: solid 8px #30155f;
+}
+
+.tab a.active {
+  background-color: #673ab7 !important;
+  color: white !important;
+  border-bottom: solid 8px #30155f !important;
 }
 
 /* Create an active/current tablink class */

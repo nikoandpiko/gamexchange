@@ -28,16 +28,16 @@ import "bootstrap";
 import { multipleSelect } from "../components/select2";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
-// import { profileTabs } from "../components/tabs";
-// import { initUpdateNavbarOnScroll } from "../components/navbar";
+import { profileTabs } from "../components/tabs";
 import { initStarRating } from '../plugins/init_star_rating';
+// import { initSelect2 } from '../components/init_select2';
+// import { initUpdateNavbarOnScroll } from "../components/navbar";
 
 document.addEventListener('turbolinks:load', () => {
   initStarRating();
-  // profileTabs();
-  // initUpdateNavbarOnScroll();
+  profileTabs();
   multipleSelect();
+  // initUpdateNavbarOnScroll();
 });
 
 console.log("Hope you're having a great day today.");

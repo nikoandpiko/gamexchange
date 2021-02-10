@@ -8,7 +8,7 @@ class OffersController < ApplicationController
       @offer_dup_checker = []
       @indexed_offers = []
       @offers.each do |offer|
-        if !@offer_dup_checker.include?([offer.game.title, offer.platform])
+        unless @offer_dup_checker.include?([offer.game.title, offer.platform])
           @offer_dup_checker << [offer.game.title, offer.platform]
           @indexed_offers << offer
         end
@@ -18,7 +18,7 @@ class OffersController < ApplicationController
       @offer_dup_checker = []
       @indexed_offers = []
       @offers.each do |offer|
-        if !@offer_dup_checker.include?([offer.game.title, offer.platform])
+        unless @offer_dup_checker.include?([offer.game.title, offer.platform])
           @offer_dup_checker << [offer.game.title, offer.platform]
           @indexed_offers << offer
         end
@@ -39,9 +39,11 @@ class OffersController < ApplicationController
   end
 
   def create
-    offer_params[:game_id] == "" ? offer_params[:game_id] = nil :
-
-    @game = Game.find(offer_params[:game_id])
+    if offer_params[:game_id] == ""
+      offer_params[:game_id] = nil
+    else
+      @game = Game.find(offer_params[:game_id])
+    end
     @offer = Offer.new(
       game: @game,
       user: current_user,

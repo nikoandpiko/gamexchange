@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
-  before_action :find_user, only: [ :new ]
+  before_action :find_user, only: [:new]
 
-   def new
+  def new
     @review = Review.new
     authorize @review
   end
@@ -35,5 +35,4 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:rating, :content, :reviewer_id)
     # params.require(:review).permit(:rating, :content, :reviewer_id, :user_id)
   end
-
 end

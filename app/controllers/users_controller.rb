@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def index
     @offers = Offer.all
   end
@@ -20,5 +19,4 @@ class UsersController < ApplicationController
   def offer_params
     params.require(:user).permit(:user_id)
   end
-
 end

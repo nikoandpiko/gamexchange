@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-  before_action :find_rental, only: [:show, :update]
+  before_action :find_rental, only: %i[show update]
   before_action :find_offer, except: [:update]
 
   def index

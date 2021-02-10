@@ -14,5 +14,4 @@ class RentalPolicy < ApplicationPolicy
     # user == record.user
     user == record.offer.user
   end
-
 end

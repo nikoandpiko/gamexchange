@@ -14,7 +14,7 @@ class OffersController < ApplicationController
         end
       end
     else
-      @offers = policy_scope(Offer).order(:game_id).page(params[:page])
+      @offers = policy_scope(Offer).order("created_at DESC").page(params[:page])
       @offer_dup_checker = []
       @indexed_offers = []
       @offers.each do |offer|

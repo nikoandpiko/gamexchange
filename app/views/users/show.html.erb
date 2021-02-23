@@ -7,13 +7,14 @@
         <h4><%= @user.username %>'s</h4>
         <h1>DASHBOARD</h1>
         <button type="button" class="btn pl-1 mt-1" data-toggle="modal" data-target="#starsModal">
-          <h3 class="stars">
+          <h5 class="stars" style="color:white;font-weight:bolder;">
             <i class="fas fa-star active"></i>
             <i class="fas fa-star active"></i>
             <i class="fas fa-star active"></i>
             <i class="fas fa-star active"></i>
             <i class="fas fa-star disabled"></i>
-          </h3>
+            (Reviews)
+          </h5>
         </button>
         <div class="modal fade" id="starsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">

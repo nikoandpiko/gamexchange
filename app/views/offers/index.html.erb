@@ -15,8 +15,7 @@
         <div class="row justify-content">
           <div class="col-lg-10">
             <%= form_tag offers_path, method: :get do %>
-              <%= text_field_tag :query,
-    params[:query], class: "form-control", placeholder: "Find a game" %>
+              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a game" %>
             </div>
             <div class="col-lg-2">
               <%= submit_tag "Search", class: "btn btn-dark button-text button-index btn-md" %>
@@ -28,7 +27,11 @@
     <p class="btn-lg button-front float-left">Rent any of these games</p>
   </div>
 </div>
+
 <div class="container">
+  <div class="pag">
+    <%= paginate @offers %>
+  </div>
   <div class="card-deck" >
     <% @indexed_offers.each do |offer| %>
       <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" data-aos="flip-left">
@@ -66,43 +69,11 @@
       </div>
     <% end %>
   </div>
+  <div class="pag">
+    <%= paginate @offers %>
+  </div>
 </div>
-<!-- <div class="row">
-  <div class="col-sm-12 col-md-6 col-lg-6 text-left">
-    <% @offers.each do |offer| %>
-      <div class="card card-show">
-        <img src="<%= offer.game.image %>" alt="<%= offer.game.title %>">
-        <div class="review-user">
-          <h3><%= link_to offer.game.title, offer_path(offer) %></h3>
-          <p><%= offer.game.genre %></p>
-        </div>
-        <div class="platforms">
-          <div class="platforms-button-">
-            <% if offer.platform == "Playstation 4" %>
-              <button disabled class ="active-p">ps4</button>
-              <button disabled class = "disabled-s">switch</button>
-              <button disabled class = "disabled-x">xbox</button>
-            <% elsif offer.platform == "Nintendo Switch"  %>
-              <button disabled class = "disabled-p">ps4</button>
-              <button disabled class ="active-s">switch</button>
-              <button disabled class = "disabled-x">xbox</button>
-            <% else %>
-              <button disabled class = "disabled-p">ps4</button>
-              <button disabled class = "disabled-s">switch</button>
-              <button disabled class ="active-x">xbox</button>
-            <% end %>
-            <div class="rent-now">
-              <button class="btn btn-primary w-100">Rent</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <% offer.rentals.each do |rental| %>
-        <%= rental.status %>
-      <% end %>
-      <br>
-    <% end %> -->
+
 <script>
   AOS.init({
     duration: 600,

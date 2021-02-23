@@ -5,6 +5,7 @@ class Offer < ApplicationRecord
   validates :game_id, presence: true
   validates :platform, presence: true
 
+  paginates_per 20
 
   include PgSearch::Model
   pg_search_scope :search_by_title,

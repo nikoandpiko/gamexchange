@@ -238,6 +238,16 @@
   min-height: 14em;
 }
 
+.button-index2 {
+  border-radius: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: #673ab7;
+  border-color: #673bb7;
+}
+
 
 
 @media only screen and (max-width: 1200px) {
@@ -281,11 +291,11 @@
     }
 
     .card-row-show h4 {
-        color: black;
-        position: absolute;
-        top: 60px;
-        left: 60px;
-    }
+      color: white;
+      position: absolute;
+      top: -80px;
+      left: 300px;
+      }
 }
 
 @media only screen and (max-width: 767px) {
@@ -293,10 +303,12 @@
     .banner-text-show h4 {
         color: black;
         margin-top: 40px;
+        visibility: hidden;
     }
 
     .banner-text-show h1 {
         color: black;
+        visibility: hidden;
     }
 
     .card-show {
@@ -307,11 +319,10 @@
     }
 
     .card-row-show h4 {
-    color: black;
+    color: white;
     position: absolute;
-    top: -60px;
-    left: 360px;
-    visibility: hidden;
+    top: -100px;
+    left: -10px;
     }
 
     .game-cover-show {
@@ -324,4 +335,88 @@
         overflow-x:hidden;
     }
 
+    .button-index2 {
+      border-radius: 0px;
+      margin-bottom: 0px;
+      position: absolute;
+      bottom: 0px;
+      left: 230px;
+      background-color: #673ab7;
+      border-color: #673bb7;
+    }
+
+    .banner-show h1 {
+      font-size: 40px;
+    }
+
+    .banner-show h4 {
+      font-size: 20px;
+    }
+
+    .banner h1 {
+      position: absolute;
+      bottom: 190px;
+      left: 30px;
+      font-size: 48px;
+    }
+
+    
+
+
+}
+
+@media only screen and (max-width: 425px) {
+  .card-row-show h4 {
+    color: white;
+    position: absolute;
+    top: -100px;
+    left: -30px;
+    }
+
+    .card-show {
+      border-radius: 8px;
+      position: relative;
+      right: 30px;
+      height: 400px;
+      width: 230px;
+      
+  }
+
+}
+
+
+@media only screen and (max-width: 375px) {
+  .card-row-show h4 {
+    color: white;
+    position: absolute;
+    top: -100px;
+    left: -55px;
+    }
+
+    .card-show {
+      border-radius: 8px;
+      position: relative;
+      right: 55px;
+      height: 400px;
+      width: 230px;
+      
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .card-row-show h4 {
+    color: white;
+    position: absolute;
+    top: -100px;
+    left: -80px;
+    }
+
+    .card-show {
+      border-radius: 8px;
+      position: relative;
+      right: 80px;
+      height: 400px;
+      width: 230px;
+      
+  }
 }

@@ -1,3 +1,6 @@
+.color-bar {
+    width: 500px;
+}
 
 .container-xl {
     position: relative;
@@ -113,22 +116,46 @@
         position: absolute;
         width: 200px;
         top: 40px;
-        right: -700px;
+        right: -630px;
     }
 
     .submit-button {
         position: absolute;
         width: 140px;
-        right: -700px;
+        right: -630px;
         top: 34px;
     }
 
     .btn-group {
-        position: relative;
         position: absolute;
         top: 0px;
         left: -400px;
     }
+
+    .ps4-button {
+        position: absolute;
+        left: 435px;
+        top: 39px;
+
+    }
+    .xbox-button {
+        position: absolute;
+        left: 435px;
+        top: 39px;
+
+    }
+
+    .switch-button {
+        position: absolute;
+        left: 435px;
+        top: 39px;
+    }
+
+    .color-bar {
+        width: 310px;
+    }
+
+
 
 
 

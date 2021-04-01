@@ -10,7 +10,7 @@
        </div>
      </div>
       <div class="row justify-content-end card-row-show">
-      <h4 class="btn-lg ">Available from these users </h4>
+      <h4 class="btn-lg from-these-users-show">Available from these users </h4>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
         </div>  
           <% @offers_for_game.each do |offer| %>
@@ -81,67 +81,3 @@
     </div>
   </div>
 </div>
-<!--
-
-<div class="banner-show">
-   <div class="container text-center container-show">
-     <div class="row">
-       <div class="col-sm-12 col-md-12 col-lg-4 text-left">
-         <br>
-         <br>
-           <img src="<%=@offer.game.image%>" alt="">
-       </div>
-       <div class="col-sm-12 col-md-12 col-lg-8 text-left">
-         <br>
-         <br>
-         <br>
-         <br>
-         <br>
-           <h4>  <%=@offer.game.genre%></h4>
-           <h1><%=@offer.game.title%></h1>
-       </div>
-     </div>
-      <div class="row show-row">
-        <div class="col-sm-12 col-md-12 col-lg-3">
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-9 text-left">
-          <div class="card-container">
-          <h5 class="h5-show">Available From:</h5>
-           <% @offers_for_game.each do |offer| %>
-             <div class="card card-show">
-                 <img src="https://cdn3.iconfinder.com/data/icons/bitcoin-cryptocurrency/512/Icon_2-512.png" alt="">
-                <div class="review-user ml-4">
-                  <h3><%=@offer.user.username%></h3>
-                  <div class="stars">
-                    <h3>★★★★☆</h3>
-                  </div>
-                </div>
-              <div class="platforms">
-                <div class="platforms-button">
-                  <% if offer.platform == "Playstation 4" %>
-                    <button disabled class ="active-p"><i class="fab fa-playstation"></i></button>
-                    <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                    <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
-                  <% elsif offer.platform == "Nintendo Switch"  %>
-                    <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                    <button disabled class ="active-s"><i class="fas fa-toggle-on"></i></button>
-                    <button disabled class = "disabled-x"><i class="fab fa-xbox"></i></button>
-                  <% else %>
-                    <button disabled class = "disabled-p"><i class="fab fa-playstation"></i></button>
-                    <button disabled class = "disabled-s"><i class="fas fa-toggle-on"></i></button>
-                    <button disabled class ="active-x"><i class="fab fa-xbox"></i></button>
-                  <% end %>
-                      <%= simple_form_for [@offer, Rental.new] do |f| %>
-                          <%= f.submit "RENT", class: "button-show" %>
-                      <% end %>
-                  </div>
-              </div>
-             </div>
-          <% end %>
-      </div>
-      </div>
-  </div>
-</div>
-
-
--->
